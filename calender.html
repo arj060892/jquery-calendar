@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <title>Calender</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <style>
+        .today {
+            background: #ffff33;
+        }
+
+        /* different color for weekend  */
+        .mid {
+            background: lightblue;
+        }
+
+        .start {
+            background: -webkit-linear-gradient(90deg, white 50%, lightblue 51%);
+            background: linear-gradient(90deg, white 50%, lightblue 51%);
+        }
+
+        .end {
+            background: -webkit-linear-gradient(90deg, lightblue 50%, white 51%);
+            background: linear-gradient(90deg, lightblue 50%, white 51%);
+        }
+
+        .start.end {
+            background: -webkit-linear-gradient(90deg, lightblue 50%, lightblue 51%);
+            background: linear-gradient(90deg, lightblue 50%, lightblue 51%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12">
+        <div class="container">Hello</div>
+        <button id="plus" class="btn btn-primary btn-sm">+ Week</button>
+        <button id="sub" class="btn btn-primary btn-sm">- Week</button>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id="app">
+                <div class="table-responsive">
+                    <table class="table fixed">
+                        <thead>
+                            <tr class="t-head"></tr>
+                        </thead>
+                        <tbody class="t-content">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="month"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var weekCount = 0;
+        $(function () {
+            bindCal();
+            $("#plus,#sub").click(function () {
+                var btnTxt = $(this).text();
+                if (btnTxt.indexOf("-") == 0) {
+                    startOfWeek = startOfWeek.subtract(1, "weeks");
+                } else if (btnTxt.indexOf("+") == 0) {
+                    startOfWeek = startOfWeek.add(1, "weeks");
+                }
+                bindCal();
+            });
+        });
+
+        function bindCal() {
+            $(".t-head,.t-content").html('');
+            $(".t-head").append("<th></th>");
+            var tBodyElem = "";
+            var tHeadElem = "";
+            for (var index = 0; index < tasks.length; index++) {
+                var tbodyTdElem = "";
+                for (var j = 0; j < 7; j++) {
+                    tbodyTdElem += "<td class='" + tasks[index] + "'></td>"
+                }
+                tBodyElem += "<tr><th scope='row'>" + tasks[index] + "</th>" + tbodyTdElem + "</tr>";
+            }
+            $('.t-content').append(tBodyElem);
+            var startMonth = startOfWeek.format('MMMM');
+            var startDate = startOfWeek.date();
+            for (var i = 0; i < 7; i++) {
+                switch (startOfWeek.day()) {
+                    case 0:
+                        dayWord = "Sun";
+                        break;
+                    case 1:
+                        dayWord = "Mon";
+                        break;
+                    case 2:
+                        dayWord = "Tue";
+                        break;
+                    case 3:
+                        dayWord = "Wed";
+                        break;
+                    case 4:
+                        dayWord = "Thu";
+                        break;
+                    case 5:
+                        dayWord = "Fri";
+                        break;
+                    case 6:
+                        dayWord = "Sat";
+                        break;
+                    default:
+                        console.log("day error");
+                }
+                tHeadElem += "<th scope='col'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
+                $(".table tr td:nth-child(" + (i + 2) + ")").addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
+                    1) + "-" + startOfWeek.date() + "");
+                startOfWeek.add(1, 'days');
+            }
+            $('.t-head').append(tHeadElem);
+
+
+            startOfWeek.subtract(1, 'days');
+            var endMonth = startOfWeek.format('MMMM');
+            var endDate = startOfWeek.date();
+            startOfWeek.subtract(6, 'days');
+            $(".month").html('').append('<b>' + startDate + ' ,' + startMonth + ' to ' + endDate + ' ,' + endMonth);
+
+        }
+
+        var now = moment();
+        var month = moment(now).month() + 1; // month is zero indexed
+        var year = now.year();
+        var startOfWeek = moment(now).startOf('isoWeek');
+        var dayWord;
+        var tasks = ['ab', 'sd', 'ee', 'tg'];
+
+
+
+        $("." + now.format("YYYY-MM-D")).addClass("today");
+
+        var bookingArray = [{
+            "end": "2019-1-30",
+            "id": "3",
+            "name": "Amirul",
+            "property": "Homestay terbilang",
+            "ref": "17111-3",
+            "slug": "homestay-terbilang",
+            "start": "2019-1-29"
+        }, {
+            "end": "2019-1-29",
+            "id": "4",
+            "name": "test",
+            "property": "Homestay terbilang",
+            "ref": "17111-4",
+            "slug": "homestay-terbilang",
+            "start": "2019-1-28"
+        }]
+
+        // make different booking different class that have different color. :) 
+
+        bookingArray.forEach(function (el) {
+            $("." + el.start).html(el.name);
+            // $("." + el.end).addClass("end").html("end");
+            var startDate = moment(el.start);
+            var endDate = moment(el.end);
+            console.log(startDate, endDate);
+        });
+    </script>
+
+
+</body>
+
+</html>
