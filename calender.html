@@ -61,7 +61,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered pol">
                         <thead>
                             <tr class="t-head"></tr>
                         </thead>
@@ -75,14 +75,9 @@
     </div>
     <script>
         var calView = "weeks";
-        var now = moment();
-        var startOfWeek = moment(now).startOf('isoWeek');
+        var startOfWeek = moment().startOf('isoWeek');
         var dayWord;
-        var tasks = ['ab', 'sd', 'ee', 'tg'];
         var weekDaysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-        var stopTypes = ["Home", "Work", "Education", "Shopping", "SocialEntertainment", "Recreation", "Other",
-            "Travel", "Worship"
-        ];
         var stopTypesComp = {
             "Home": "Home",
             "Work": "Work",
@@ -96,7 +91,7 @@
         };
 
         function bindData() {
-            $("." + data.Day + " ." + data.POLCategory + "").html(data.TotalCategoryTime);
+            $("." + data.Year + " ." + data.MonthNumber + " ." + data.Day + " ." + data.POLCategory + "").html(data.TotalCategoryTime);
 
 
             // bookingArray.forEach(function (el) {
@@ -222,8 +217,9 @@
                         console.log("day error");
                 }
                 if (calView == "weeks") {
+
                     tHeadElem += "<th scope='col'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
-                    $(".table tr td:nth-child(" + (i + 2) + ")").addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
+                    $(".table tr td:nth-child(" + (i + 2) + ")").removeAttr('class').addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
                         1) + "-" + startOfWeek.date() + "");
                 } else if (calView == "months") {
                     tHeadElem += "<th scope='col'>" + dayWord + "</th>";
@@ -240,13 +236,16 @@
             var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ,' + startMonth + ' to ' + endDate + ' ,' +
                 endMonth + '</b>' : "<b>" + startMonth + ", " + startOfWeek.year() + "</b>";
             $(".month").html('').append(headerTxt);
+            $(".pol").addClass(startOfWeek.year().toString());
+            $(".pol tbody").addClass((startOfWeek.month() +
+                1).toString());
             bindData();
 
         }
 
 
 
-        $("." + now.format("YYYY-MM-D")).addClass("today");
+        $("." + moment().format("YYYY-MM-D")).addClass("today");
 
         var bookingArray = [{
             "end": "2019-1-30",
