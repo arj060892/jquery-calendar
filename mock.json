@@ -1,43 +1,42 @@
 {
-  "_id": ObjectId("5c4ec3598a881c2888cf7891"),
-  "ClientId": ObjectId("5c2f2be4eef4c72f24500e6e"),
-  "POLCategory": "Recreation",
-  "MonthNumber": 1,
-  "Day": "Monday",
-  "Year": 2019,
-  "TotalCategoryTime": "02:00:00",
-  "MonthlyActivityRoutineSubClass": [
-    {
-      "Coordinates": {
-        "type": "Point",
-        "coordinates": [34.005813, -84.32682]
-      },
-      "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-      "StartTime": {
-        "$date": 1548050400000
-      },
-      "EndTime": {
-        "$date": 1548054000000
-      },
-      "TotalTime": "01:00:00",
-      "PlaceId": null,
-      "PlaceName": "Park de CTE"
-    },
-    {
-      "Coordinates": {
-        "type": "Point",
-        "coordinates": [34.005813, -84.32682]
-      },
-      "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-      "StartTime": {
-        "$date": 1548057600000
-      },
-      "EndTime": {
-        "$date": 1548061200000
-      },
-      "TotalTime": "01:00:00",
-      "PlaceId": null,
-      "PlaceName": "Park de CTE"
-    }
-  ]
+    "_id": "5c4ec3598a881c2888cf7891",
+    "ClientId": "5c2f2be4eef4c72f24500e6e",
+    "POLCategory": "Recreation",
+    "MonthNumber": 1,
+    "Day": "Monday",
+    "Year": 2019,
+    "TotalCategoryTime": "02:00:00",
+    "MonthlyActivityRoutineSubClass": [{
+            "Coordinates": {
+                "type": "Point",
+                "coordinates": [34.005813, -84.32682]
+            },
+            "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+            "StartTime": {
+                "$date": 1548050400000
+            },
+            "EndTime": {
+                "$date": 1548054000000
+            },
+            "TotalTime": "01:00:00",
+            "PlaceId": null,
+            "PlaceName": "Park de CTE"
+        },
+        {
+            "Coordinates": {
+                "type": "Point",
+                "coordinates": [34.005813, -84.32682]
+            },
+            "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+            "StartTime": {
+                "$date": 1548057600000
+            },
+            "EndTime": {
+                "$date": 1548061200000
+            },
+            "TotalTime": "01:00:00",
+            "PlaceId": null,
+            "PlaceName": "Park de CTE"
+        }
+    ]
 }
