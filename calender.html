@@ -11,43 +11,57 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     <style>
-        .today {
-            background: #ffff33;
+        .row {
+            margin: 10px;
         }
 
-        /* different color for weekend  */
-        .mid {
-            background: lightblue;
+        table.fixed {
+            table-layout: fixed;
+            width: 90px;
         }
 
-        .start {
-            background: -webkit-linear-gradient(90deg, white 50%, lightblue 51%);
-            background: linear-gradient(90deg, white 50%, lightblue 51%);
+        /*Setting the table width is important!*/
+        table.fixed td {
+            overflow: hidden;
         }
 
-        .end {
-            background: -webkit-linear-gradient(90deg, lightblue 50%, white 51%);
-            background: linear-gradient(90deg, lightblue 50%, white 51%);
+        /*Hide text outside the cell.*/
+        table.fixed td:nth-of-type(1) {
+            width: 20px;
         }
 
-        .start.end {
-            background: -webkit-linear-gradient(90deg, lightblue 50%, lightblue 51%);
-            background: linear-gradient(90deg, lightblue 50%, lightblue 51%);
+        /*Setting the width of column 1.*/
+        table.fixed td:nth-of-type(2) {
+            width: 30px;
         }
+
+        /*Setting the width of column 2.*/
+        table.fixed td:nth-of-type(3) {
+            width: 40px;
+        }
+
+        /*Setting the width of column 3.*/
     </style>
 </head>
 
 <body>
-    <div class="col-md-12">
-        <div class="container">Hello</div>
-        <button id="plus" class="btn btn-primary btn-sm">+ Week</button>
-        <button id="sub" class="btn btn-primary btn-sm">- Week</button>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="plus" class="btn btn-primary btn-sm">+</button>
+            <button id="sub" class="btn btn-primary btn-sm">-</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
+            <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
+        </div>
     </div>
     <div class="container">
         <div class="row">
-            <div id="app">
+            <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table fixed">
+                    <table class="table table-bordered">
                         <thead>
                             <tr class="t-head"></tr>
                         </thead>
@@ -60,18 +74,37 @@
         </div>
     </div>
     <script>
-        var weekCount = 0;
+        var calView = "weeks";
+        var now = moment();
+        var startOfWeek = moment(now).startOf('isoWeek');
+        var dayWord;
+        var tasks = ['ab', 'sd', 'ee', 'tg'];
+
         $(function () {
+            $('#week').attr('disabled', 'true');
+            $('#month').removeAttr('disabled');
             bindCal();
             $("#plus,#sub").click(function () {
                 var btnTxt = $(this).text();
                 if (btnTxt.indexOf("-") == 0) {
-                    startOfWeek = startOfWeek.subtract(1, "weeks");
+                    startOfWeek = startOfWeek.subtract(1, calView);
                 } else if (btnTxt.indexOf("+") == 0) {
-                    startOfWeek = startOfWeek.add(1, "weeks");
+                    startOfWeek = startOfWeek.add(1, calView);
                 }
                 bindCal();
             });
+
+            $(".viewToggle").click(function () {
+                calView = calView == "weeks" ? "months" : "weeks";
+                if (calView == "months") {
+                    $('#month').attr('disabled', 'true');
+                    $('#week').removeAttr('disabled');
+                } else if (calView == "weeks") {
+                    $('#week').attr('disabled', 'true');
+                    $('#month').removeAttr('disabled');
+                }
+                bindCal();
+            })
         });
 
         function bindCal() {
@@ -82,15 +115,16 @@
             for (var index = 0; index < tasks.length; index++) {
                 var tbodyTdElem = "";
                 for (var j = 0; j < 7; j++) {
-                    tbodyTdElem += "<td class='" + tasks[index] + "'></td>"
+                    tbodyTdElem += "<td><span class='" + tasks[index] + "'></span></td>"
                 }
                 tBodyElem += "<tr><th scope='row'>" + tasks[index] + "</th>" + tbodyTdElem + "</tr>";
             }
             $('.t-content').append(tBodyElem);
             var startMonth = startOfWeek.format('MMMM');
             var startDate = startOfWeek.date();
+            var startWeekDay = calView == "months" ? startOfWeek.startOf('isoWeek') : startOfWeek;
             for (var i = 0; i < 7; i++) {
-                switch (startOfWeek.day()) {
+                switch (startWeekDay.day()) {
                     case 0:
                         dayWord = "Sun";
                         break;
@@ -115,9 +149,13 @@
                     default:
                         console.log("day error");
                 }
-                tHeadElem += "<th scope='col'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
-                $(".table tr td:nth-child(" + (i + 2) + ")").addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
-                    1) + "-" + startOfWeek.date() + "");
+                if (calView == "weeks") {
+                    tHeadElem += "<th scope='col'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
+                    $(".table tr td:nth-child(" + (i + 2) + ")").addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
+                        1) + "-" + startOfWeek.date() + "");
+                } else if (calView == "months") {
+                    tHeadElem += "<th scope='col'>" + dayWord + "</th>";
+                }
                 startOfWeek.add(1, 'days');
             }
             $('.t-head').append(tHeadElem);
@@ -127,16 +165,11 @@
             var endMonth = startOfWeek.format('MMMM');
             var endDate = startOfWeek.date();
             startOfWeek.subtract(6, 'days');
-            $(".month").html('').append('<b>' + startDate + ' ,' + startMonth + ' to ' + endDate + ' ,' + endMonth);
+            var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ,' + startMonth + ' to ' + endDate + ' ,' +
+                endMonth + '</b>' : "<b>" + startMonth + ", " + startOfWeek.year() + "</b>";
+            $(".month").html('').append(headerTxt);
 
         }
-
-        var now = moment();
-        var month = moment(now).month() + 1; // month is zero indexed
-        var year = now.year();
-        var startOfWeek = moment(now).startOf('isoWeek');
-        var dayWord;
-        var tasks = ['ab', 'sd', 'ee', 'tg'];
 
 
 
