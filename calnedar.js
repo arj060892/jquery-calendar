@@ -139,6 +139,7 @@ function bindCal() {
 
     }
     $('.t-content').append(tBodyElem);
+    var startYear = startOfWeek.year();
     var startMonth = startOfWeek.format('MMMM');
     var startDate = startOfWeek.date();
     var startWeekDay = calView == "months" ? startOfWeek.startOf('isoWeek') : startOfWeek;
@@ -184,9 +185,10 @@ function bindCal() {
     startOfWeek.subtract(1, 'days');
     var endMonth = startOfWeek.format('MMMM');
     var endDate = startOfWeek.date();
+    var endYear = startOfWeek.year();
     startOfWeek.subtract(6, 'days');
-    var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ' + startMonth + ' - ' + endDate + ' ' +
-        endMonth + '</b>' : "<b>" + startMonth + " " + startOfWeek.year() + "</b>";
+    var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ' + startMonth + ' ' + startYear + ' - ' + endDate + ' ' +
+        endMonth + ' ' + endYear + '</b>' : "<b>" + startMonth + " " + startOfWeek.year() + "</b>";
     $(".monthDtl").html('').append(headerTxt);
     var tempClassCache = $(".pol").attr('class').split(' ').slice(0, 3).join(' ') + " " + startOfWeek.year().toString();
     $(".pol").removeAttr('class').addClass(tempClassCache);
