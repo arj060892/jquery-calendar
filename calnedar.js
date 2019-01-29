@@ -38,6 +38,10 @@ var stopTypesComp = {
     "Worship": {
         "Name": "Worship",
         "Color": "#1c91e0"
+    },
+    "Services": {
+        "Name": "Services",
+        "Color": "Black"
     }
 };
 
@@ -109,7 +113,9 @@ $(function () {
         }
         bindCal();
     });
-
+    $(".panel-heading").click(function () {
+        $(".panel-body").slideToggle();
+    })
     $(".viewToggle").click(function () {
         calView = calView == "weeks" ? "months" : "weeks";
         if (calView == "months") {
@@ -121,13 +127,29 @@ $(function () {
         }
         bindCal();
     })
+    $("#todayBtn").click(function () {
+        startOfWeek = moment().startOf('isoWeek');
+        bindCal();
+    })
 });
+
+
+function myMap() {
+    var mapProp = {
+        center: new google.maps.LatLng(51.508742, -0.120850),
+        zoom: 5,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+}
+
 
 function bindCal() {
     $(".t-head,.t-content").html('');
     $(".t-head").append("<th></th>");
     var tBodyElem = "";
     var tHeadElem = "";
+
+    // For creating Vertical Headers/Categories
     for (var key in stopTypesComp) {
         var tbodyTdElem = "";
         for (var j = 0; j < 7; j++) {
@@ -139,11 +161,14 @@ function bindCal() {
 
     }
     $('.t-content').append(tBodyElem);
+
+    // Calender Binding
     var startYear = startOfWeek.year();
     var startMonth = startOfWeek.format('MMMM');
     var startDate = startOfWeek.date();
     var startWeekDay = calView == "months" ? startOfWeek.startOf('isoWeek') : startOfWeek;
     for (var i = 0; i < 7; i++) {
+        var isCurrentDate = moment().startOf('day').isSame(startWeekDay);
         switch (startWeekDay.day()) {
             case 0:
                 dayWord = "Sun";
@@ -170,10 +195,10 @@ function bindCal() {
                 console.log("day error");
         }
         if (calView == "weeks") {
-
-            tHeadElem += "<th scope='col'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
+            var todayClass = isCurrentDate ? "today" : "";
+            tHeadElem += "<th scope='col' class='" + todayClass + "'>" + dayWord + "<br>" + startOfWeek.date() + "</th>";
             $(".table tr td:nth-child(" + (i + 2) + ")").removeAttr('class').addClass(startOfWeek.year() + "-" + (startOfWeek.month() +
-                1) + "-" + startOfWeek.date() + "");
+                1) + "-" + startOfWeek.date() + "").addClass(todayClass);
         } else if (calView == "months") {
             tHeadElem += "<th scope='col'>" + dayWord + "<br>&nbsp;</th>";
         }
@@ -187,6 +212,7 @@ function bindCal() {
     var endDate = startOfWeek.date();
     var endYear = startOfWeek.year();
     startOfWeek.subtract(6, 'days');
+
     var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ' + startMonth + ' ' + startYear + ' - ' + endDate + ' ' +
         endMonth + ' ' + endYear + '</b>' : "<b>" + startMonth + " " + startOfWeek.year() + "</b>";
     $(".monthDtl").html('').append(headerTxt);
@@ -197,35 +223,3 @@ function bindCal() {
     bindData();
 
 }
-
-
-
-$("." + moment().format("YYYY-MM-D")).addClass("today");
-
-var bookingArray = [{
-    "end": "2019-1-30",
-    "id": "3",
-    "name": "Amirul",
-    "property": "Homestay terbilang",
-    "ref": "17111-3",
-    "slug": "homestay-terbilang",
-    "start": "2019-1-29"
-}, {
-    "end": "2019-1-29",
-    "id": "4",
-    "name": "test",
-    "property": "Homestay terbilang",
-    "ref": "17111-4",
-    "slug": "homestay-terbilang",
-    "start": "2019-1-28"
-}]
-
-// make different booking different class that have different color. :) 
-
-bookingArray.forEach(function (el) {
-    $("." + el.start).html(el.name);
-    // $("." + el.end).addClass("end").html("end");
-    var startDate = moment(el.start);
-    var endDate = moment(el.end);
-    console.log(startDate, endDate);
-});

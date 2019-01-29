@@ -12,6 +12,10 @@
         crossorigin="anonymous"></script>
     <script src="./calnedar.js"></script>
     <style>
+        .today {
+            background-color: #d0eeef;
+        }
+
         .row {
             margin: 10px;
         }
@@ -40,7 +44,7 @@
         .catColorBox {
             width: 25px;
             height: 24px;
-            left: 40px;
+            left: 24px;
         }
 
         thead th:not(:first-child) {
@@ -55,10 +59,14 @@
             padding: 0px 5px;
         }
 
-        .table td,
-        .table th {
+        .patterOfLife .table td,
+        .patterOfLife .table th {
             text-align: center;
             padding: 2px;
+        }
+
+        .patterOfLife table {
+            margin: 0px;
         }
 
         table,
@@ -68,42 +76,123 @@
         tbody {
             font-weight: lighter;
         }
+
+
+
+        html {
+            min-height: 100%;
+            /* make sure it is at least as tall as the viewport */
+            position: relative;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        #googleMap {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+        }
+
+        /* #wrapper { position: relative; } */
+        .patterOfLife {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 99;
+            background-color: white;
+            width: 46%;
+        }
+
+        .panel-warning>.panel-heading {
+            color: #333;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .panel-default {
+            border-color: #ddd;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        }
+
+        .panel-heading:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-    <div class="patterOfLife">
-        <div class="row">
-            <div class="col-md-12 viewControl">
-                <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
-                <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"></div>
+    <div id="wrapper">
+        <div id="googleMap"></div>
+        <div class="patterOfLife">
+            <div class="panel-group">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Pattern Of Life Analysis</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 viewControl">
+                                <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
+                                <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"></div>
 
-            <div class="col-md-6">
-                <div class="monthDtl"></div>
-            </div>
-            <div class="col-md-3 viewControl">
-                <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
-                <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-bordered pol">
-                        <thead>
-                            <tr class="t-head"></tr>
-                        </thead>
-                        <tbody class="t-content">
-                        </tbody>
-                    </table>
+                            <div class="col-md-6">
+                                <div class="monthDtl"></div>
+                            </div>
+                            <div class="col-md-3 viewControl">
+                                <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
+                                <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
+                                <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered pol">
+                                        <thead>
+                                            <tr class="t-head"></tr>
+                                        </thead>
+                                        <tbody class="t-content">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQnR5gQdv22ALIerWvA1heui4-WLupN8Q&callback=myMap"></script>
 </body>
 
 </html>
