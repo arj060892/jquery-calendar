@@ -3,15 +3,42 @@ var startOfWeek = moment().startOf('isoWeek');
 var dayWord;
 var weekDaysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 var stopTypesComp = {
-    "Home": "Home",
-    "Work": "Work",
-    "Education": "Education",
-    "Shopping": "Shopping",
-    "SocialEntertainment": "Social Entertainment",
-    "Recreation": "Recreation",
-    "Other": "Other",
-    "Travel": "Travel",
-    "Worship": "Worship"
+    "Home": {
+        "Name": "Home",
+        "Color": "#79f179"
+    },
+    "Work": {
+        "Name": "Work",
+        "Color": "#b5eac1"
+    },
+    "Education": {
+        "Name": "Education",
+        "Color": "#4ebfe8"
+    },
+    "Shopping": {
+        "Name": "Shopping",
+        "Color": "#3b6675"
+    },
+    "SocialEntertainment": {
+        "Name": "Social Entertainment",
+        "Color": "#f5a976"
+    },
+    "Recreation": {
+        "Name": "Recreation",
+        "Color": "#00980a"
+    },
+    "Other": {
+        "Name": "Other",
+        "Color": "#ecec11"
+    },
+    "Travel": {
+        "Name": "Travel",
+        "Color": "#e2e2ba"
+    },
+    "Worship": {
+        "Name": "Worship",
+        "Color": "#1c91e0"
+    }
 };
 
 function bindData() {
@@ -77,7 +104,7 @@ $(function () {
         var direction = $(this).data("direction");
         if (direction == "left") {
             startOfWeek = startOfWeek.subtract(1, calView);
-        } else if (direction == "right")  {
+        } else if (direction == "right") {
             startOfWeek = startOfWeek.add(1, calView);
         }
         bindCal();
@@ -104,10 +131,11 @@ function bindCal() {
     for (var key in stopTypesComp) {
         var tbodyTdElem = "";
         for (var j = 0; j < 7; j++) {
-            tbodyTdElem += "<td class='" + weekDaysArr[j] + "'><span class='" + stopTypesComp[key] +
+            tbodyTdElem += "<td class='" + weekDaysArr[j] + "'><span class='" + stopTypesComp[key].Name +
                 "'></span></td>"
         }
-        tBodyElem += "<tr><th scope='row'>" + stopTypesComp[key] + "</th>" + tbodyTdElem + "</tr>";
+        var tempString = '<div class="row"><div class="col-md-6">' + stopTypesComp[key].Name + '</div><div class="col-md-2 catColorBox" style="background-color:' + stopTypesComp[key].Color + '" ></div>';
+        tBodyElem += "<tr><th scope='row'>" + tempString + "</th>" + tbodyTdElem + "</tr>";
 
     }
     $('.t-content').append(tBodyElem);
@@ -160,9 +188,10 @@ function bindCal() {
     var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ' + startMonth + ' - ' + endDate + ' ' +
         endMonth + '</b>' : "<b>" + startMonth + " " + startOfWeek.year() + "</b>";
     $(".monthDtl").html('').append(headerTxt);
-    $(".pol").addClass(startOfWeek.year().toString());
-    $(".pol tbody").addClass((startOfWeek.month() +
-        1).toString());
+    var tempClassCache = $(".pol").attr('class').split(' ').slice(0, 3).join(' ') + " " + startOfWeek.year().toString();
+    $(".pol").removeAttr('class').addClass(tempClassCache);
+    tempClassCache = $(".pol tbody").attr('class').split(' ').slice(0, 1).join(' ') + " " + (startOfWeek.month() + 1).toString();
+    $(".pol tbody").removeAttr('class').addClass(tempClassCache);
     bindData();
 
 }
