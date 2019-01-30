@@ -45,43 +45,6 @@ var stopTypesComp = {
     }
 };
 var latLongCollection = [];
-
-
-function bindData() {
-    var dtPOLCategory;
-    var dtTotalCategoryTime;
-    for (var key in data.Days) {
-        var dtTemp = data.Days[key];
-        dtDay = dtTemp.Day;
-        for (var innerKey in dtTemp.POLCategories) {
-            var dtInnerTemp = dtTemp.POLCategories[innerKey];
-            dtPOLCategory = dtInnerTemp.POLCategory;
-            dtTotalCategoryTime = dtInnerTemp.TotalCategoryTime;
-            $("." + data.Year + " ." + data.MonthNumber + " ." + dtDay + " ." + dtPOLCategory + "").html(dtTotalCategoryTime);
-            for (var catKey in dtInnerTemp.MonthlyActivityRoutineSubClass) {
-                var dtCatTemp = dtInnerTemp.MonthlyActivityRoutineSubClass[catKey];
-                latLongCollection.push({
-                    position: new google.maps.LatLng(dtCatTemp.Coordinates.coordinates[0], dtCatTemp.Coordinates.coordinates[1]),
-                    type: dtPOLCategory,
-                    address: dtCatTemp.Address
-                })
-
-            }
-        }
-
-    }
-
-    console.log(latLongCollection);
-
-
-    // bookingArray.forEach(function (el) {
-    //     $("." + el.start).html(el.name);
-    //     // $("." + el.end).addClass("end").html("end");
-    //     var startDate = moment(el.start);
-    //     var endDate = moment(el.end);
-    //     console.log(startDate, endDate);
-    // });
-}
 var data = {
     "_id": "5c4ec3598a881c2888cf7891",
     "ClientId": "5c2f2be4eef4c72f24500e6e",
@@ -156,11 +119,13 @@ var data = {
         }
     ]
 }
+var map;
 
 $(function () {
     $('#week').attr('disabled', 'true');
     $('#month').removeAttr('disabled');
     bindCal();
+
     $("#plus,#sub").click(function () {
         var direction = $(this).data("direction");
         if (direction == "left") {
@@ -170,9 +135,11 @@ $(function () {
         }
         bindCal();
     });
+
     $(".panel-heading").click(function () {
         $(".panel-body").slideToggle();
     })
+
     $(".viewToggle").click(function () {
         calView = calView == "weeks" ? "months" : "weeks";
         if (calView == "months") {
@@ -184,21 +151,12 @@ $(function () {
         }
         bindCal();
     })
+    
     $("#todayBtn").click(function () {
         startOfWeek = moment().startOf('isoWeek');
         bindCal();
     })
 });
-
-
-function myMap() {
-    var mapProp = {
-        center: new google.maps.LatLng(51.508742, -0.120850),
-        zoom: 5,
-    };
-    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-}
-
 
 function bindCal() {
     $(".t-head,.t-content").html('');
@@ -261,8 +219,7 @@ function bindCal() {
         }
         startOfWeek.add(1, 'days');
     }
-    $('.t-head').append(tHeadElem);
-
+    $('.t-head').append(tHeadElem);   
 
     startOfWeek.subtract(1, 'days');
     var endMonth = startOfWeek.format('MMMM');
@@ -280,7 +237,6 @@ function bindCal() {
     bindData();
     initMap();
 }
-var map;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -304,8 +260,10 @@ function initMap() {
             icon: iconBase + 'info-i_maps.png'
         }
     };
+
     var infoWindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
+
     latLongCollection.forEach(function (feature) {
         var marker = new google.maps.Marker({
             position: feature.position,
@@ -324,4 +282,29 @@ function initMap() {
         })(marker, feature.address));
     });
     map.fitBounds(bounds);
+}
+
+function bindData() {
+    var dtPOLCategory;
+    var dtTotalCategoryTime;
+    for (var key in data.Days) {
+        var dtTemp = data.Days[key];
+        dtDay = dtTemp.Day;
+        for (var innerKey in dtTemp.POLCategories) {
+            var dtInnerTemp = dtTemp.POLCategories[innerKey];
+            dtPOLCategory = dtInnerTemp.POLCategory;
+            dtTotalCategoryTime = dtInnerTemp.TotalCategoryTime;
+            $("." + data.Year + " ." + data.MonthNumber + " ." + dtDay + " ." + dtPOLCategory + "").html(dtTotalCategoryTime);
+            for (var catKey in dtInnerTemp.MonthlyActivityRoutineSubClass) {
+                var dtCatTemp = dtInnerTemp.MonthlyActivityRoutineSubClass[catKey];
+                latLongCollection.push({
+                    position: new google.maps.LatLng(dtCatTemp.Coordinates.coordinates[0], dtCatTemp.Coordinates.coordinates[1]),
+                    type: dtPOLCategory,                    
+                    address: dtCatTemp.Address
+                })
+
+            }
+        }
+
+    }
 }

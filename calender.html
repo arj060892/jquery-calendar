@@ -142,46 +142,65 @@
 <body>
     <div id="wrapper">
         <div id="googleMap"></div>
-        <div class="patterOfLife">
-            <div class="panel-group">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">Pattern Of Life Analysis</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12 viewControl">
-                                <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
-                                <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
-                            </div>
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="patterOfLife">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select class="form-control">
+                                <option>Patter of Life Analysis</option>
+                                <option>Daily</option>
+                            </select>
                         </div>
-                        <div class="row">
-                            <div class="col-md-3"></div>
+                    </div>
+                    <div class="panel-group">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">Pattern Of Life Analysis</div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 viewControl">
+                                        <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
+                                        <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
 
-                            <div class="col-md-6">
-                                <div class="monthDtl"></div>
-                            </div>
-                            <div class="col-md-3 viewControl">
-                                <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
-                                <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
-                                <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered pol">
-                                        <thead>
-                                            <tr class="t-head"></tr>
-                                        </thead>
-                                        <tbody class="t-content">
-                                        </tbody>
-                                    </table>
+                                    <div class="col-md-6">
+                                        <div class="monthDtl"></div>
+                                    </div>
+                                    <div class="col-md-3 viewControl">
+                                        <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
+                                        <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
+                                        <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered pol">
+                                                <thead>
+                                                    <tr class="t-head"></tr>
+                                                </thead>
+                                                <tbody class="t-content">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-1">
+                <div class="toggleControl">
+                    <button class="btn btn-primary"><i class="fas fa-caret-left"></i></button>
+                </div>
+            </div>
         </div>
+
+
     </div>
 
 
