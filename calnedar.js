@@ -44,31 +44,34 @@ var stopTypesComp = {
         "Color": "Black"
     }
 };
-var latLongCollection=[];
+var latLongCollection = [];
+
+
 function bindData() {
     var dtPOLCategory;
     var dtTotalCategoryTime;
-    for(var key in data.Days){
+    for (var key in data.Days) {
         var dtTemp = data.Days[key];
-         dtDay =dtTemp.Day;
-        for(var innerKey in dtTemp.POLCategories){
+        dtDay = dtTemp.Day;
+        for (var innerKey in dtTemp.POLCategories) {
             var dtInnerTemp = dtTemp.POLCategories[innerKey];
-            dtPOLCategory = dtInnerTemp.POLCategory; 
+            dtPOLCategory = dtInnerTemp.POLCategory;
             dtTotalCategoryTime = dtInnerTemp.TotalCategoryTime;
             $("." + data.Year + " ." + data.MonthNumber + " ." + dtDay + " ." + dtPOLCategory + "").html(dtTotalCategoryTime);
-            for(var catKey in dtInnerTemp.MonthlyActivityRoutineSubClass){
-                var dtCatTemp =dtInnerTemp.MonthlyActivityRoutineSubClass[catKey];
+            for (var catKey in dtInnerTemp.MonthlyActivityRoutineSubClass) {
+                var dtCatTemp = dtInnerTemp.MonthlyActivityRoutineSubClass[catKey];
                 latLongCollection.push({
                     position: new google.maps.LatLng(dtCatTemp.Coordinates.coordinates[0], dtCatTemp.Coordinates.coordinates[1]),
-                    type: dtPOLCategory
-                  })
+                    type: dtPOLCategory,
+                    address: dtCatTemp.Address
+                })
 
             }
         }
 
     }
 
-console.log(latLongCollection);
+    console.log(latLongCollection);
 
 
     // bookingArray.forEach(function (el) {
@@ -90,74 +93,40 @@ var data = {
                 "POLCategory": "Recreation",
                 "TotalCategoryTime": "02:00:00",
                 "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                    "Coordinates": {
+                        "type": "Point",
+                        "coordinates": [34.097862, -84.32682]
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                    "StartTime": {
+                        "$date": 1548050400000
+                    },
+                    "EndTime": {
+                        "$date": 1548054000000
+                    },
+                    "TotalTime": "01:00:00",
+                    "PlaceId": null,
+                    "PlaceName": "Park de CTE"
+                }]
             }, {
                 "POLCategory": "Education",
                 "TotalCategoryTime": "01:00:00",
                 "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                    "Coordinates": {
+                        "type": "Point",
+                        "coordinates": [34.005769, -84.326865]
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                    "StartTime": {
+                        "$date": 1548057600000
+                    },
+                    "EndTime": {
+                        "$date": 1548061200000
+                    },
+                    "TotalTime": "01:00:00",
+                    "PlaceId": null,
+                    "PlaceName": "Park de CTE"
+                }]
             }]
 
         },
@@ -167,74 +136,21 @@ var data = {
                 "POLCategory": "Shopping",
                 "TotalCategoryTime": "02:00:00",
                 "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                    "Coordinates": {
+                        "type": "Point",
+                        "coordinates": [34.108459, -84.257359]
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
-            }, {
-                "POLCategory": "Travel",
-                "TotalCategoryTime": "01:00:00",
-                "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                    "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                    "StartTime": {
+                        "$date": 1548050400000
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "EndTime": {
+                        "$date": 1548054000000
+                    },
+                    "TotalTime": "01:00:00",
+                    "PlaceId": null,
+                    "PlaceName": "Park de CTE"
+                }]
             }]
 
         }
@@ -365,33 +281,47 @@ function bindCal() {
     initMap();
 }
 var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('googleMap'), {
-    zoom: 16,
-    center: new google.maps.LatLng(34.005813, -84.32682),
-    mapTypeId: 'roadmap'
-  });
 
-  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-  var icons = {
-    Education: {
-      icon: iconBase + 'parking_lot_maps.png'
-    },
-    Shopping: {
-      icon: iconBase + 'library_maps.png'
-    },
-    Recreation: {
-      icon: iconBase + 'info-i_maps.png'
-    },
-    Travel: {
-      icon: iconBase + 'info-i_maps.png'
-    }
-  };
-  latLongCollection.forEach(function(feature) {
-    var marker = new google.maps.Marker({
-      position: feature.position,
-      icon: icons[feature.type].icon,
-      map: map
+function initMap() {
+    map = new google.maps.Map(document.getElementById('googleMap'), {
+        zoom: 16,
+        center: new google.maps.LatLng(34.005813, -84.32682),
+        mapTypeId: 'roadmap'
     });
-  });
+
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var icons = {
+        Education: {
+            icon: iconBase + 'parking_lot_maps.png'
+        },
+        Shopping: {
+            icon: iconBase + 'library_maps.png'
+        },
+        Recreation: {
+            icon: iconBase + 'info-i_maps.png'
+        },
+        Travel: {
+            icon: iconBase + 'info-i_maps.png'
+        }
+    };
+    var infoWindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
+    latLongCollection.forEach(function (feature) {
+        var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+        });
+        bounds.extend(marker.position);
+
+        google.maps.event.addListener(marker, 'mouseover', (function (mm, tt) {
+            return function () {
+                infoWindow.setOptions({
+                    content: feature.address
+                });
+                infoWindow.open(map, mm);
+            }
+        })(marker, feature.address));
+    });
+    map.fitBounds(bounds);
 }
