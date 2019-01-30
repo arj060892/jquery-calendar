@@ -140,6 +140,18 @@ $(function () {
         $(".panel-body").slideToggle();
     })
 
+    $(".control-toggler").click(function(){
+        if($(".pol-calender").is(':visible'))
+          {
+            $(".pol-calender").animate({ width: 'hide' }); 
+          }
+          else
+          {
+            $(".pol-calender").animate({ width: 'show' }); 
+    
+          }
+    });
+
     $(".viewToggle").click(function () {
         calView = calView == "weeks" ? "months" : "weeks";
         if (calView == "months") {

@@ -104,10 +104,19 @@
             top: 10px;
             left: 10px;
             z-index: 99;
-            background-color: white;
             width: 46%;
         }
-
+        .pol-calender{
+            background-color: white;
+            width: 89%;
+            float: left;
+        }
+        .control-toggler{
+            width: 10%;
+    float: left;
+    top: 32;
+    position: relative;
+        }
         .panel-warning>.panel-heading {
             color: #333;
             background-color: #fcf8e3;
@@ -145,51 +154,57 @@
         <div class="row">
             <div class="col-sm-11">
                 <div class="patterOfLife">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <select class="form-control">
-                                <option>Patter of Life Analysis</option>
-                                <option>Daily</option>
-                            </select>
+                    <div class="pol-calender">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select class="form-control">
+                                    <option>Patter of Life Analysis</option>
+                                    <option>Daily</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-group">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">Pattern Of Life Analysis</div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12 viewControl">
-                                        <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
-                                        <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
+                        <div class="panel-group">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">Pattern Of Life Analysis</div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12 viewControl">
+                                            <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
+                                            <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3"></div>
-
-                                    <div class="col-md-6">
-                                        <div class="monthDtl"></div>
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+    
+                                        <div class="col-md-6">
+                                            <div class="monthDtl"></div>
+                                        </div>
+                                        <div class="col-md-3 viewControl">
+                                            <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
+                                            <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
+                                            <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3 viewControl">
-                                        <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
-                                        <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
-                                        <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered pol">
-                                                <thead>
-                                                    <tr class="t-head"></tr>
-                                                </thead>
-                                                <tbody class="t-content">
-                                                </tbody>
-                                            </table>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered pol">
+                                                    <thead>
+                                                        <tr class="t-head"></tr>
+                                                    </thead>
+                                                    <tbody class="t-content">
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="control-toggler"> 
+                        <button>texts</button>
                     </div>
                 </div>
             </div>
