@@ -12,220 +12,310 @@
         crossorigin="anonymous"></script>
     <script src="./calnedar.js"></script>
     <style>
-        .today {
-            background-color: #d0eeef;
-        }
-
-        .row {
-            margin: 10px;
-        }
-
-        .monthDtl {
-            text-align: center;
-        }
-
-        .viewControl {
-            text-align: right;
-        }
-
-        .t-content .row {
-            margin: 0px;
-        }
-
-        .t-content td {
-            width: 100px;
-        }
-
-        .t-content th {
-            width: 200px;
-            table-layout: fixed;
-        }
-
-        .catColorBox {
-            width: 25px;
-            height: 24px;
-            left: 24px;
-        }
-
-        thead th:not(:first-child) {
-            min-width: 84px;
-        }
-
-        .patterOfLife .row {
-            margin: 10px 0px;
-        }
-
-        .patterOfLife .col-md-12 {
-            padding: 0px 5px;
-        }
-
-        .patterOfLife .table td,
-        .patterOfLife .table th {
-            text-align: center;
-            padding: 2px;
-        }
-
-        .patterOfLife table {
-            margin: 0px;
-        }
-
-        table,
-        th,
-        td,
-        body,
-        tbody {
-            font-weight: lighter;
-        }
-
-
-
-        html {
-            min-height: 100%;
-            /* make sure it is at least as tall as the viewport */
-            position: relative;
-        }
-
-        body {
-            height: 100%;
-        }
-
-        #googleMap {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
-        }
-
-        /* #wrapper { position: relative; } */
-        .patterOfLife {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 99;
-            width: 46%;
-        }
-        .pol-calender{
-            background-color: white;
-            width: 89%;
-            float: left;
-        }
-        .control-toggler{
-            width: 10%;
-    float: left;
-    top: 32;
-    position: relative;
-        }
-        .panel-warning>.panel-heading {
-            color: #333;
-            background-color: #fcf8e3;
-            border-color: #faebcc;
-        }
-
-        .panel-heading {
-            padding: 10px 15px;
-            border-bottom: 1px solid transparent;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-        }
-
-        .panel-default {
-            border-color: #ddd;
-        }
-
-        .panel {
-            background-color: #fff;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-        }
-
-        .panel-heading:hover {
-            cursor: pointer;
-        }
-    </style>
+            .patternOfLife .today {
+              background-color: #d0eeef;
+            }
+        
+            .patternOfLife .row {
+              margin: 10px;
+            }
+        
+            .patternOfLife .monthDtl {
+              text-align: center;
+            }
+        
+            .patternOfLife .viewControl {
+              text-align: right;
+            }
+        
+              .patternOfLife .viewControl button {
+                border: 1px solid;
+                background-color: #f5f5f5;
+                background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+                background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+                background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+                background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+                background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+                background-repeat: repeat-x;
+                border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+                border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+                color: #333;
+                text-shadow: 0 1px 1px rgba(255,255,255,.75);
+                box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+              }
+        
+                .patternOfLife .viewControl button:hover {
+                  color: #333;
+                  text-decoration: none;
+                  background-position: 0 -15px;
+                  -webkit-transition: background-position .1s linear;
+                  -moz-transition: background-position .1s linear;
+                  -o-transition: background-position .1s linear;
+                  transition: background-position .1s linear;
+                }
+        
+            .patternOfLife .t-content .row {
+              margin: 0px;
+            }
+        
+            .patternOfLife .t-content td {
+              width: 100px;
+              font-size:12px;
+            }
+        
+            .patternOfLife .t-content th {
+              width: 200px;
+              table-layout: fixed;
+            }
+        
+            .patternOfLife .catColorBox {
+              padding: 1px;
+            }
+        
+            .patternOfLife thead th:not(:first-child) {
+              min-width: 40px;
+              max-width: 40px;
+            }
+            .patternOfLife thead th:first-child{
+              text-align:left;
+            }
+        
+            .patternOfLife .row {
+              margin: 10px 0px;
+            }
+        
+            .patternOfLife .col-xs-12 {
+              padding: 0px 5px;
+            }
+        
+            .patternOfLife .table td,
+            .patternOfLife .table th {
+              text-align: center;
+              padding: 5px 0px;
+              font-size
+            }
+        
+            .patternOfLife table {
+              margin: 0px;
+            }
+        
+            .patternOfLife table,
+            .patternOfLife th,
+            .patternOfLife td,
+            .patternOfLife body,
+            .patternOfLife tbody {
+              font-weight: lighter;
+            }
+        
+        
+        
+            html {
+              min-height: 100%;
+              /* make sure it is at least as tall as the viewport */
+              position: relative;
+            }
+        
+            body {
+              height: 100%;
+            }
+        
+            #googleMap {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              overflow: hidden;
+            }
+        
+            /* #wrapper { position: relative; } */
+            .patternOfLife {
+              position: relative;
+              top: -14px;
+              left: 0px;
+              z-index: 99;
+              width: 36%;
+            }
+        
+              .patternOfLife .control-box {
+                background-color: #1e1e1e;
+                background-image: -webkit-linear-gradient(top, #3a434e 0%, #1e1e1e 100%);
+                background-image: linear-gradient(to bottom, #3a434e 0%, #1e1e1e 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3a434e', endColorstr='#ff1e1e1e', GradientType=0);
+                filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+                background-repeat: repeat-x;
+                border-bottom: none;
+                -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.75);
+                box-shadow: 0 0 14px rgba(0, 0, 0, 0.75);
+                padding: 20px 15px;
+                border-radius: 3px;
+              }
+        
+                .patternOfLife .control-box .col-xs-6:first-child {
+                  padding-left: 5px;
+                }
+        
+                .patternOfLife .control-box .col-xs-6:last-child {
+                  padding-right: 5px;
+                }
+        
+            .panel-warning > .panel-heading {
+              color: #333;
+              background-color: #fcf8e3;
+              border-color: #faebcc;
+            }
+        
+            .panel-heading {
+              padding: 10px 15px;
+              border-bottom: 1px solid transparent;
+              border-top-left-radius: 3px;
+              border-top-right-radius: 3px;
+            }
+        
+            .panel-default {
+              border-color: #ddd;
+            }
+        
+            .panel {
+              background-color: #fff;
+              border: 1px solid transparent;
+              border-radius: 4px;
+              -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+              box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            }
+        
+            .panel-heading:hover {
+              cursor: pointer;
+            }
+        
+            .patternOfLife .direction-arrows {
+              color: #86d2ec;
+              font-size: 20px;
+              vertical-align: top;
+            }
+        
+              .patternOfLife .direction-arrows:hover {
+                cursor: pointer;
+              }
+        
+            .patternOfLife .pol-calender {
+              background-color: white;
+              width: 89%;
+              float: left;
+              overflow: hidden;
+              box-shadow: 5px 9px 20px #191919;
+            }
+        
+            .patternOfLife .bolder {
+              font-weight: bold;
+              font-size: 14px;
+            }
+        
+            .patternOfLife .control-toggler {
+              width: 10%;
+              float: left;
+              top: 95px;
+              margin-left: 1px;
+              position: relative;
+            }
+        
+              .patternOfLife .control-toggler button {
+                padding: 10px 0px;
+                width: 55%;
+                height: 53px;
+                border-radius: 0px;
+                border-radius: 0px;
+              }
+        
+            .patternOfLife .control-box > button {
+              padding: 10px 1px;
+              height: 53px;
+            }
+            .patternOfLife .catText{
+              text-align:left;
+            }
+          </style>
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="googleMap"></div>
         <div class="row">
-            <div class="col-sm-11">
-                <div class="patterOfLife">
+                <div id="wrapper">
+                  <div id="googleMap"></div>
+                  <div class="patternOfLife">
                     <div class="pol-calender">
+                      <div class="animate-fixer">
                         <div class="row">
-                            <div class="col-md-12">
+                          <div class="col-xs-12 control-box">
+                            <div class="row">
+                              <div class="col-xs-12">
                                 <select class="form-control">
-                                    <option>Patter of Life Analysis</option>
-                                    <option>Daily</option>
+                                  <option>Pattern of Life Analysis</option>
+                                  <option>Daily</option>
                                 </select>
+                              </div>
                             </div>
-                        </div>
-                        <div class="panel-group">
-                            <div class="panel panel-warning">
-                                <div class="panel-heading">Pattern Of Life Analysis</div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 viewControl">
-                                            <button id="month" class="btn btn-success btn-sm viewToggle">Month</button>
-                                            <button id="week" class="btn btn-success btn-sm viewToggle">Week</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3"></div>
-    
-                                        <div class="col-md-6">
-                                            <div class="monthDtl"></div>
-                                        </div>
-                                        <div class="col-md-3 viewControl">
-                                            <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
-                                            <button id="plus" class="btn btn-primary btn-sm" data-direction="left">&lt;</button>
-                                            <button id="sub" class="btn btn-primary btn-sm" data-direction="right">&gt;</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered pol">
-                                                    <thead>
-                                                        <tr class="t-head"></tr>
-                                                    </thead>
-                                                    <tbody class="t-content">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row">
+                              <div class="col-xs-6">
+                                <input type="text" placeholder="From Date" class="form-control" />
+                              </div>
+                              <div class="col-xs-6">
+                                <input type="text" placeholder="To Date" class="form-control" />
+                              </div>
                             </div>
+                          </div>
                         </div>
-
+              
+                        <div>
+                          <div class="row">
+                            <div class="col-xs-12 viewControl">
+                              <button id="month" class="btn btn-sm viewToggle">Month</button>
+                              <button id="week" class="btn btn-sm viewToggle">Week</button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-10">
+                              <div class="col-xs-2">
+                                <span id="plus" class="direction-arrows" data-direction="left">
+                                  <i class="fa fa-fw fa-lg fa-caret-left"></i>
+                                </span>
+                              </div>
+                              <div class="col-xs-8">
+                                <div class="monthDtl"></div>
+                              </div>
+                              <div class="col-xs-2">
+                                <span id="sub" class="direction-arrows" data-direction="right">
+                                  <i class="fa fa-fw fa-lg fa-caret-right"></i>
+                                </span>
+                              </div>
+                            </div>
+              
+                            <div class="col-xs-2 viewControl">
+                              <button id="todayBtn" class="btn btn-success btn-sm">Today</button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="table-responsive">
+                                <table class="table table-bordered pol">
+                                  <thead>
+                                    <tr class="t-head"></tr>
+                                  </thead>
+                                  <tbody class="t-content"></tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="control-toggler"> 
-                        <button>texts</button>
+                    <div class="control-toggler">
+                      <button class="btn btn-lg btn-primary"><i class="fa fa-fw fa-lg fa-caret-left"></i></button>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="col-sm-1">
-                <div class="toggleControl">
-                    <button class="btn btn-primary"><i class="fas fa-caret-left"></i></button>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
+              </div>
+              
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQnR5gQdv22ALIerWvA1heui4-WLupN8Q&callback=myMap"></script>
 </body>
 

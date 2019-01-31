@@ -1,164 +1,871 @@
 {
-    "_id": "5c4ec3598a881c2888cf7891",
+    "_id": "000000000000000000000000",
     "ClientId": "5c2f2be4eef4c72f24500e6e",
-    "MonthNumber": 1,
-    "Year": 2019,
-    "Days": [{
-            "Day": "Monday",
-            "POLCategories": [{
-                "POLCategory": "Recreation",
-                "TotalCategoryTime": "02:00:00",
-                "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+    "Dates": [{
+        "date": "2019-01-25T00:00:00Z",
+        "Day": "Friday",
+        "PolCategories": [{
+            "Category": "Home",
+            "CategoryTotalTime": "05:38:31",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005762, -84.326847],
+                        "Longitude": 34.005762,
+                        "Latitude": -84.326847
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:15:32Z",
+                "EndTime": "2019-01-25T11:15:32Z",
+                "TotalTime": "00:01:00"
             }, {
-                "POLCategory": "Education",
-                "TotalCategoryTime": "01:00:00",
-                "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005153, -84.327145],
+                        "Longitude": 34.005153,
+                        "Latitude": -84.327145
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
-            }]
-
-        },
-        {
-            "Day": "Tuesday",
-            "POLCategories": [{
-                "POLCategory": "Shopping",
-                "TotalCategoryTime": "02:00:00",
-                "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "01:00:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:16:32Z",
+                "EndTime": "2019-01-25T11:33:32Z",
+                "TotalTime": "00:18:00"
             }, {
-                "POLCategory": "Travel",
-                "TotalCategoryTime": "01:00:00",
-                "MonthlyActivityRoutineSubClass": [{
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548050400000
-                        },
-                        "EndTime": {
-                            "$date": 1548054000000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005762, -84.326847],
+                        "Longitude": 34.005762,
+                        "Latitude": -84.326847
                     },
-                    {
-                        "Coordinates": {
-                            "type": "Point",
-                            "coordinates": [34.005813, -84.32682]
-                        },
-                        "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
-                        "StartTime": {
-                            "$date": 1548057600000
-                        },
-                        "EndTime": {
-                            "$date": 1548061200000
-                        },
-                        "TotalTime": "00:30:00",
-                        "PlaceId": null,
-                        "PlaceName": "Park de CTE"
-                    }
-                ]
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:18:32Z",
+                "EndTime": "2019-01-25T11:18:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005745, -84.326823],
+                        "Longitude": 34.005745,
+                        "Latitude": -84.326823
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:23:32Z",
+                "EndTime": "2019-01-25T11:23:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00577, -84.326853],
+                        "Longitude": 34.00577,
+                        "Latitude": -84.326853
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:26:32Z",
+                "EndTime": "2019-01-25T11:26:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.326862],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.326862
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:29:32Z",
+                "EndTime": "2019-01-25T11:29:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.326862],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.326862
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:30:32Z",
+                "EndTime": "2019-01-25T11:30:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.326873],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.326873
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T23:46:29Z",
+                "EndTime": "2019-01-26T04:59:27Z",
+                "TotalTime": "05:14:31"
             }]
-
-        }
-    ]
+        }, {
+            "Category": "Travel",
+            "CategoryTotalTime": "00:49:00.2370000",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:34:32Z",
+                "EndTime": "2019-01-25T11:37:32Z",
+                "TotalTime": "00:03:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:35:32Z",
+                "EndTime": "2019-01-25T11:53:31.237Z",
+                "TotalTime": "00:17:59.2370000"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T21:42:29Z",
+                "EndTime": "2019-01-25T22:01:30Z",
+                "TotalTime": "00:20:01"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T22:52:28Z",
+                "EndTime": "2019-01-25T22:56:28Z",
+                "TotalTime": "00:05:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T23:43:29Z",
+                "EndTime": "2019-01-25T23:45:29Z",
+                "TotalTime": "00:03:00"
+            }]
+        }, {
+            "Category": "Work",
+            "CategoryTotalTime": "10:39:21",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.097485, -84.207495],
+                        "Longitude": 34.097485,
+                        "Latitude": -84.207495
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1035 Windward Ridge Parkway",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:49:32Z",
+                "EndTime": "2019-01-25T11:49:32Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.097823, -84.20762],
+                        "Longitude": 34.097823,
+                        "Latitude": -84.20762
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1035 Windward Ridge Parkway",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:50:24Z",
+                "EndTime": "2019-01-25T11:50:24Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.09792, -84.207485],
+                        "Longitude": 34.09792,
+                        "Latitude": -84.207485
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1035 Windward Ridge Parkway",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T11:54:32Z",
+                "EndTime": "2019-01-25T21:40:29Z",
+                "TotalTime": "09:46:57"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005647, -84.326667],
+                        "Longitude": 34.005647,
+                        "Latitude": -84.326667
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "Old Alabama Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T22:02:04Z",
+                "EndTime": "2019-01-25T22:51:28Z",
+                "TotalTime": "00:50:24"
+            }]
+        }, {
+            "Category": "Shopping",
+            "CategoryTotalTime": "00:01:00",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.021035, -84.321743],
+                        "Longitude": 34.021035,
+                        "Latitude": -84.321743
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1325 Holcomb Bridge Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T21:58:30Z",
+                "EndTime": "2019-01-25T21:58:30Z",
+                "TotalTime": "00:01:00"
+            }]
+        }, {
+            "Category": "Recreation",
+            "CategoryTotalTime": "00:44:35",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.018043, -84.319128],
+                        "Longitude": 34.018043,
+                        "Latitude": -84.319128
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1425 Market Blvd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T22:57:28Z",
+                "EndTime": "2019-01-25T22:57:28Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [0.0, 0.0],
+                        "Longitude": 0.0,
+                        "Latitude": 0.0
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1425 Market Blvd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-25T22:58:29Z",
+                "EndTime": "2019-01-25T23:42:04Z",
+                "TotalTime": "00:43:35"
+            }]
+        }]
+    }, {
+        "date": "2019-01-26T00:00:00Z",
+        "Day": "Saturday",
+        "PolCategories": [{
+            "Category": "Home",
+            "CategoryTotalTime": "09:39:59",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.326862],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.326862
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T05:00:27Z",
+                "EndTime": "2019-01-26T14:21:26Z",
+                "TotalTime": "09:21:59"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.003477, -84.32719],
+                        "Longitude": 34.003477,
+                        "Latitude": -84.32719
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T22:47:23Z",
+                "EndTime": "2019-01-26T23:04:23Z",
+                "TotalTime": "00:18:00"
+            }]
+        }, {
+            "Category": "Travel",
+            "CategoryTotalTime": "01:14:26.0600000",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:22:24Z",
+                "EndTime": "2019-01-26T14:25:50Z",
+                "TotalTime": "00:04:26"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:31:26Z",
+                "EndTime": "2019-01-26T14:31:26Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:33:26Z",
+                "EndTime": "2019-01-26T14:34:26Z",
+                "TotalTime": "00:02:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T20:04:24Z",
+                "EndTime": "2019-01-26T20:28:24Z",
+                "TotalTime": "00:25:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T21:19:25Z",
+                "EndTime": "2019-01-26T21:19:25Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T21:22:24Z",
+                "EndTime": "2019-01-26T21:29:24Z",
+                "TotalTime": "00:08:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T22:20:25Z",
+                "EndTime": "2019-01-26T22:20:25Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T22:21:25Z",
+                "EndTime": "2019-01-26T22:37:25.06Z",
+                "TotalTime": "00:16:00.0600000"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T22:40:25Z",
+                "EndTime": "2019-01-26T22:46:25Z",
+                "TotalTime": "00:07:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T23:05:23Z",
+                "EndTime": "2019-01-26T23:13:23Z",
+                "TotalTime": "00:09:00"
+            }]
+        }, {
+            "Category": "Shopping",
+            "CategoryTotalTime": "01:44:56.0900000",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.017595, -84.320025],
+                        "Longitude": 34.017595,
+                        "Latitude": -84.320025
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "Unnamed Road, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:26:42Z",
+                "EndTime": "2019-01-26T14:26:42Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.017322, -84.320202],
+                        "Longitude": 34.017322,
+                        "Latitude": -84.320202
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "Unnamed Road, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:27:58Z",
+                "EndTime": "2019-01-26T14:30:26Z",
+                "TotalTime": "00:03:28"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [0.0, 0.0],
+                        "Longitude": 0.0,
+                        "Latitude": 0.0
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1000 North Point Cir, Alpharetta, GA 30022, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T20:28:28Z",
+                "EndTime": "2019-01-26T21:18:24.09Z",
+                "TotalTime": "00:49:56.0900000"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [0.0, 0.0],
+                        "Longitude": 0.0,
+                        "Latitude": 0.0
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1000 North Point Cir, Alpharetta, GA 30022, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T21:20:25Z",
+                "EndTime": "2019-01-26T21:20:57Z",
+                "TotalTime": "00:00:32"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.046328, -84.290063],
+                        "Longitude": 34.046328,
+                        "Latitude": -84.290063
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "6290 North Point Pkwy, Alpharetta, GA 30022, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T21:30:25Z",
+                "EndTime": "2019-01-26T22:19:25Z",
+                "TotalTime": "00:50:00"
+            }]
+        }, {
+            "Category": "Work",
+            "CategoryTotalTime": "00:01:00",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.010133, -84.331268],
+                        "Longitude": 34.010133,
+                        "Latitude": -84.331268
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "Old Alabama Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:32:26Z",
+                "EndTime": "2019-01-26T14:32:26Z",
+                "TotalTime": "00:01:00"
+            }]
+        }, {
+            "Category": "Recreation",
+            "CategoryTotalTime": "06:15:17",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005822, -84.326875],
+                        "Longitude": 34.005822,
+                        "Latitude": -84.326875
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1221 Roswell Riverwalk Trail, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T14:35:08Z",
+                "EndTime": "2019-01-26T20:03:24Z",
+                "TotalTime": "05:29:16"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.001425, -84.296123],
+                        "Longitude": 34.001425,
+                        "Latitude": -84.296123
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "9015 Fouts Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-26T23:14:24Z",
+                "EndTime": "2019-01-26T23:59:24Z",
+                "TotalTime": "00:46:01"
+            }]
+        }, {
+            "Category": "SocialEntertainment",
+            "CategoryTotalTime": "00:02:00",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.004847, -84.29518],
+                        "Longitude": 34.004847,
+                        "Latitude": -84.29518
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "2300 Holcomb Bridge Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": "Monterrey Mexican Restaurant",
+                "StartTime": "2019-01-26T22:38:25Z",
+                "EndTime": "2019-01-26T22:38:25Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.004713, -84.295565],
+                        "Longitude": 34.004713,
+                        "Latitude": -84.295565
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "2270 Holcomb Bridge Rd, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": "Monterrey Mexican Restaurant",
+                "StartTime": "2019-01-26T22:39:25Z",
+                "EndTime": "2019-01-26T22:39:25Z",
+                "TotalTime": "00:01:00"
+            }]
+        }]
+    }, {
+        "date": "2019-01-27T00:00:00Z",
+        "Day": "Sunday",
+        "PolCategories": [{
+            "Category": "Travel",
+            "CategoryTotalTime": "00:10:59",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T00:00:25Z",
+                "EndTime": "2019-01-27T00:00:25Z",
+                "TotalTime": "00:01:00"
+            }, {
+                "Coordinates": null,
+                "Address": null,
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T00:01:25Z",
+                "EndTime": "2019-01-27T00:10:24Z",
+                "TotalTime": "00:09:59"
+            }]
+        }, {
+            "Category": "Home",
+            "CategoryTotalTime": "06:45:16",
+            "DailyActivityRoutineDetails": [{
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.32687],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.32687
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T00:11:24Z",
+                "EndTime": "2019-01-27T05:21:22Z",
+                "TotalTime": "05:10:58"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00576, -84.32686],
+                        "Longitude": 34.00576,
+                        "Latitude": -84.32686
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:01:22Z",
+                "EndTime": "2019-01-27T05:01:22Z",
+                "TotalTime": "00:01:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00576, -84.32686],
+                        "Longitude": 34.00576,
+                        "Latitude": -84.32686
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:03:22Z",
+                "EndTime": "2019-01-27T05:03:22Z",
+                "TotalTime": "00:03:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00576, -84.32686],
+                        "Longitude": 34.00576,
+                        "Latitude": -84.32686
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:05:22Z",
+                "EndTime": "2019-01-27T05:05:22Z",
+                "TotalTime": "00:05:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00576, -84.32686],
+                        "Longitude": 34.00576,
+                        "Latitude": -84.32686
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:06:22Z",
+                "EndTime": "2019-01-27T05:06:22Z",
+                "TotalTime": "00:06:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.00576, -84.32686],
+                        "Longitude": 34.00576,
+                        "Latitude": -84.32686
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:09:22Z",
+                "EndTime": "2019-01-27T05:09:22Z",
+                "TotalTime": "00:09:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005753, -84.32687],
+                        "Longitude": 34.005753,
+                        "Latitude": -84.32687
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:13:22Z",
+                "EndTime": "2019-01-27T05:13:22Z",
+                "TotalTime": "00:13:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005757, -84.326872],
+                        "Longitude": 34.005757,
+                        "Latitude": -84.326872
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:16:22Z",
+                "EndTime": "2019-01-27T05:16:22Z",
+                "TotalTime": "00:16:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.32687],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.32687
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:18:22Z",
+                "EndTime": "2019-01-27T05:18:22Z",
+                "TotalTime": "00:18:22"
+            }, {
+                "Coordinates": {
+                    "Coordinates": {
+                        "Values": [34.005758, -84.32687],
+                        "Longitude": 34.005758,
+                        "Latitude": -84.32687
+                    },
+                    "Type": 7,
+                    "BoundingBox": null,
+                    "CoordinateReferenceSystem": null,
+                    "ExtraMembers": null
+                },
+                "Address": "1040 Northshore Dr, Roswell, GA 30076, USA",
+                "PlaceId": null,
+                "PlaceName": null,
+                "StartTime": "2019-01-27T05:20:22Z",
+                "EndTime": "2019-01-27T05:20:22Z",
+                "TotalTime": "00:20:22"
+            }]
+        }]
+    }]
 }
-
-
-D:\Git Code\nVisionWeb\nVisionWeb\nVisionWeb\Images
