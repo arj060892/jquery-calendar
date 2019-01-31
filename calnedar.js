@@ -339,7 +339,7 @@ function setMarkers(icons) {
 
     google.maps.event.addListener(marker, 'mouseover', (function (mm, tt) {
       return function () {
-        var infoContent = '<div style="margin-bottom:5px"><b>' + feature.type.toUpperCase() + '</b></div><div style="margin-bottom:5px">' + ((feature.placeName != null) ? feature.placeName : feature.address) + '</div>' + '<div style="margin-bottom:5px"><b>Start Time</b> : ' + feature.startTime + '<br/><b>End Time</b> : ' + feature.endTime+'</div>';
+        var infoContent = '<div style="margin-bottom:5px;font-size:15px;color:' + feature.colorCode + '"><b>' + feature.catName.toUpperCase() + '</b></div><div style="margin-bottom:10px">' + ((feature.placeName != null) ? feature.placeName : feature.address) + '</div>' + '<div style="margin-bottom:5px"><b>Start Time</b>: ' + feature.startTime + '<br/><b>End Time</b>: ' + feature.endTime + '</div>';
         infoWindow.setOptions({
           content: infoContent
         });
@@ -369,11 +369,13 @@ function bindData(res) {
         if (dtCatTemp.Coordinates != null && (dtCatTemp.Coordinates.Coordinates.Longitude != 0 || dtCatTemp.Coordinates.Coordinates.Latitude != 0)) {
           latLongCollection.push({
             position: new google.maps.LatLng(dtCatTemp.Coordinates.Coordinates.Longitude, dtCatTemp.Coordinates.Coordinates.Latitude),
+            catName: stopTypesComp[dtPOLCategory].Name,
             type: dtPOLCategory,
             address: dtCatTemp.Address,
             placeName: dtCatTemp.PlaceName,
             startTime: moment(dtCatTemp.StartTime).format("DD MMM YYYY hh:mm a"),
-            endTime: moment(dtCatTemp.EndTime).format("DD MMM YYYY hh:mm a")
+            endTime: moment(dtCatTemp.EndTime).format("DD MMM YYYY hh:mm a"),
+            colorCode: stopTypesComp[dtPOLCategory].Color
           });
         }
 
