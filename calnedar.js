@@ -1,92 +1,104 @@
 var calView = "months";
-var startOfWeek = moment().startOf('isoWeek');
-var dayWord;
-var weekDaysArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var startOfWeek = moment().startOf('week');
+var viewType = "pol";
+var weekDaysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var stopTypesComp = {
   "Home": {
     "Name": "Home",
-    "Color": "#00b627"
+    "Color": "#99cc66"
   },
   "Work": {
     "Name": "Work",
-    "Color": "#808040"
+    "Color": "#339933"
   },
   "Education": {
     "Name": "Education",
-    "Color": "#d9544f"
+    "Color": "#14b5c7"
   },
   "Shopping": {
     "Name": "Shopping",
-    "Color": "#92d050"
+    "Color": "#7b9eb1"
   },
   "SocialEntertainment": {
-    "Name": "Social Entertainment",
-    "Color": "#4b8b41"
+    "Name": "Social/Entertainment",
+    "Color": "#36c3a7"
   },
   "Recreation": {
     "Name": "Recreation",
-    "Color": "#d5e9c4"
+    "Color": "#f77d38"
   },
   "Other": {
     "Name": "Other",
-    "Color": "#fee599"
+    "Color": "#ed667c"
   },
   "Travel": {
     "Name": "Travel",
-    "Color": "#c8bfe7"
+    "Color": "#ffc90e"
   },
   "Worship": {
     "Name": "Worship",
-    "Color": "#999999"
+    "Color": "#e887de"
   },
   "Services": {
     "Name": "Services",
-    "Color": "#ff0000"
+    "Color": "#4b96f3"
   }
 };
 var latLongCollection = [];
 var map;
-var baseUrl = 'https://amsanlayticsfunction.azurewebsites.net/api/';
-var apiMethod = { "months": "MonthlyPatternOfLifeHttpTrigger", "weeks": "WeeklyPatternOfLifeHTTPTrigger", "activity":"ActivityRoutine" };
-var clients = [
-  { "Name": "Ron", "Id": "5c2f2be4eef4c72f24500e6e" },
-  { "Name": "Miranda", "Id": "5c2f2cbbeef4c72f24500e6f" }
+var tempResp = '';
+var refreshCurrent;
+var baseUrl = 'https://gps-analytics-poc-function-apps.azurewebsites.net/api/';
+var apiMethod = {
+  "months": "MonthlyPatternOfLife",
+  "weeks": "WeeklyPatternOfLife",
+  "activity": "ActivityRoutine"
+};
+var clients = [{
+  "Name": "Ron",
+  "Id": "5c2f2be4eef4c72f24500e6e"
+},
+{
+  "Name": "Miranda",
+  "Id": "5c2f2cbbeef4c72f24500e6f"
+}
 ];
-var iconBase = '/Images/';
+var iconBase = '/Images/pol_pins/';
 var icons = {
   Home: {
-    icon: iconBase + 'sb-beacon.png'
+    icon: iconBase + 'Icon_POL_home.png'
   },
   Work: {
-    icon: iconBase + 'sb-definedlocation.png'
+    icon: iconBase + 'Icon_POL_work.png'
   },
   Education: {
-    icon: iconBase + 'sb-exclusion.png'
+    icon: iconBase + 'Icon_POL_education.png'
   },
   Shopping: {
-    icon: iconBase + 'sb-inclusionhome.png'
+    icon: iconBase + 'Icon_POL_shopping.png'
   },
   SocialEntertainment: {
-    icon: iconBase + 'sb-inclusionother.png'
+    icon: iconBase + 'Icon_POL_social.png'
   },
   Recreation: {
-    icon: iconBase + 'sb-inclusionwork.png'
+    icon: iconBase + 'Icon_POL_recreation.png'
   },
   Other: {
-    icon: iconBase + 'sb-multiplelocation.png'
+    icon: iconBase + 'Icon_POL_other.png'
   },
   Travel: {
-    icon: iconBase + 'sb-ponitofinterest.png'
+    icon: iconBase + 'Icon_POL_travel.png'
   },
   Worship: {
-    icon: iconBase + 'sb-unidentifiedlocation.png'
+    icon: iconBase + 'Icon_POL_worship.png'
   },
   Services: {
-    icon: iconBase + 'stop-button.png'
+    icon: iconBase + 'Icon_POL_services.png'
   }
 };
 var clientId = '';
 var markers = [];
+var currentDate = moment();
 
 $(function () {
   initMap();
@@ -103,6 +115,11 @@ $(function () {
     $('#week').removeAttr('disabled');
   }
 
+  $(".resetBtn").click(function () {
+    calView = "months";
+     startOfWeek = moment().startOf('week');
+    $(".viewToggle").trigger("click");
+  });
 
   $(".pattern-of-life .direction").click(function () {
     var direction = $(this).data("direction");
@@ -117,21 +134,24 @@ $(function () {
   $(".activity-routine .direction").click(function () {
     var direction = $(this).data("direction");
     if (direction == "left") {
-      startOfWeek = startOfWeek.subtract(1, "days");
+      currentDate = currentDate.subtract(1, "days");
     } else if (direction == "right") {
-      startOfWeek = startOfWeek.add(1, "days");
+      currentDate = currentDate.add(1, "days");
     }
-    bindActivityTab();
+    bindActivityTab(false);
   });
 
   $(".control-toggler button").click(function () {
     $(this).children().toggleClass("fa-caret-right");
     if ($(".pol-calender").is(':visible')) {
       $('.animate-fixer').width($(".pol-calender").width())
-      $(".pol-calender").animate({ width: 'hide' });
-    }
-    else {
-      $(".pol-calender").animate({ width: 'show' });
+      $(".pol-calender").animate({
+        width: 'hide'
+      });
+    } else {
+      $(".pol-calender").animate({
+        width: 'show'
+      });
 
     }
   });
@@ -149,30 +169,40 @@ $(function () {
   })
 
   $(".todayBtn").click(function () {
-    startOfWeek = moment().startOf('isoWeek');
-    bindPolCal();
-    bindActivityTab();
+    if (viewType == 'pol') {
+      startOfWeek = moment().startOf('week');
+      bindPolCal();
+    } else {
+      bindActivityTab(true);
+    }
   });
 
   $('#clientSelection').change(function () {
     clientId = $('#clientSelection').val();
-    bindPolCal();
-    bindActivityTab();
+    viewType == 'pol' ? bindPolCal() : bindActivityTab(true);
   });
 
   $('.data-viewer').change(function () {
     var dataView = this.value;
     if (dataView == 'pol') {
+      viewType = dataView;
       $(".activity-routine").hide();
       $(".pattern-of-life").show();
       bindPolCal();
     } else if (dataView == 'dar') {
+      viewType = dataView;
       $(".activity-routine").css({
         "height": $('.pattern-of-life').height() + "px",
-        "overflow-y":"scroll"
+        "overflow": "hidden"
       }).show();
+
+      $(".activity-routine .table-responsive").css({
+        "height": ($('.activity-routine').height() - $('.activity-routine>div:first').height()) - 40 + "px",
+        "overflow-y": "scroll"
+      })
+
       $(".pattern-of-life").hide();
-      bindActivityTab();
+      bindActivityTab(true);
     }
   });
 });
@@ -180,16 +210,20 @@ $(function () {
 function bindClients() {
   var option = '';
   for (var key in clients) {
-    option += '<option value="' + clients[key]["Id"] + '">' + clients[key]["Name"] + '</option>';
+    if (clients.hasOwnProperty(key)) {
+      option += '<option value="' + clients[key]["Id"] + '">' + clients[key]["Name"] + '</option>';
+    }
   };
   $('#clientSelection').append(option);
   clientId = $('#clientSelection').val();
 }
 
-function bindActivityTab() {
-  var headerTxt = '<b>'+startOfWeek.format('dddd') + ', ' + startOfWeek.format('LL')+'</b>';
+function bindActivityTab(isToday) {
+  currentDate = isToday ? moment() : currentDate;
+  var headerTxt = '<b>' + currentDate.format('dddd') + ', ' + currentDate.format('LL') + '</b>';
   $('.dateDtl').html('').append(headerTxt);
-  initActivityApi(startOfWeek.format('MM/DD/YYYY'));
+  initActivityApi(currentDate.format('MM/DD/YYYY'));
+
 }
 
 function initActivityApi(date) {
@@ -208,8 +242,13 @@ function initActivityApi(date) {
 
   $.ajax(settings).done(function (res) {
     if (res) {
+      reSetMarkers();
+      latLongCollection = [];
       var trString = '';
       for (var key in res.ActivityTimelineDetails) {
+        if (!res.ActivityTimelineDetails.hasOwnProperty(key)) {
+          break;
+        }
         var tdString = '';
         var acPolCat = res.ActivityTimelineDetails[key]["POLCategory"];
         var acAddress = res.ActivityTimelineDetails[key]["PlaceName"] ? res.ActivityTimelineDetails[key]["PlaceName"] : res.ActivityTimelineDetails[key]["Address"];
@@ -217,13 +256,27 @@ function initActivityApi(date) {
         var acEndAddress = res.ActivityTimelineDetails[key]["EndAddress"];
         var acStartTime = moment(res.ActivityTimelineDetails[key]["StartTime"]).format("hh:mm A");
         var acEndTime = moment(res.ActivityTimelineDetails[key]["EndTime"]).format("hh:mm A");
-        var hrs = res.ActivityTimelineDetails[key]["TotalTime"].split(':')[0] + ' hours';
-        var min = res.ActivityTimelineDetails[key]["TotalTime"].split(':')[1] + ' minutes';
+        var hrs = res.ActivityTimelineDetails[key]["TotalTime"].split(':')[0] + ' Hrs';
+        var min = res.ActivityTimelineDetails[key]["TotalTime"].split(':')[1] + ' Mins';
         var acTotalTime = hrs + ' ' + min;
         var addStr = (acPolCat.toLowerCase() == 'travel') ? '<span><b>Begin Address:</b> ' + acBeginAddress + '</span></br></br><span><b>End Address:</b> ' + acEndAddress + '</span>' : '<span>' + acAddress + '</span>';
-        tdString = '<td><img src="' + icons[acPolCat].icon + '" alt="' + acPolCat + '"/></td><td><span><b>Start:</b> ' + acStartTime + '</span></br><span><b>End:</b> ' + acEndTime + '</span></br></br><span>' + acTotalTime + '</span></td><td>' + addStr + '</td><td></td><td></td>';
+        tdString = '<td><div><img src="' + icons[acPolCat].icon + '" alt="' + stopTypesComp[acPolCat].Name + '"/></div></td><td><span><b>Start:</b> ' + acStartTime + '</span></br><span><b>End:</b> ' + acEndTime + '</span></br></br><span>' + acTotalTime + '</span></td><td><b>' + stopTypesComp[acPolCat].Name + '</b></br>' + addStr + '</td><td></td><td></td>';
         trString += '<tr>' + tdString + '</tr>';
+        if (res.ActivityTimelineDetails[key]["placeCoordinates"] != null && (res.ActivityTimelineDetails[key]["placeCoordinates"].Coordinates.Longitude != 0 || res.ActivityTimelineDetails[key]["placeCoordinates"].Coordinates.Latitude != 0)) {
+          latLongCollection.push({
+            position: new google.maps.LatLng(res.ActivityTimelineDetails[key]["placeCoordinates"].Coordinates.Longitude, res.ActivityTimelineDetails[key]["placeCoordinates"].Coordinates.Latitude),
+            catName: stopTypesComp[acPolCat].Name,
+            type: acPolCat,
+            address: acAddress,
+            placeName: acAddress,
+            startTime: acStartTime,
+            endTime: acEndTime,
+            colorCode: stopTypesComp[acPolCat].Color,
+            isCurrentDate: false
+          });
+        }
       };
+      setMarkers(icons);
       $('.dar').html(trString);
     } else {
       $('.dar').html('No data found')
@@ -241,7 +294,7 @@ function bindPolCal() {
   for (var key in stopTypesComp) {
     var tbodyTdElem = "";
     for (var j = 0; j < 7; j++) {
-      tbodyTdElem += "<td class='" + weekDaysArr[j] + "'><span class='" + stopTypesComp[key].Name +
+      tbodyTdElem += "<td class='" + weekDaysArr[j] + "'><span class='" + key +
         "'></span></td>"
     }
     var tempString = '<div class="col-xs-2 catColorBox"><i class="fa fa-fw fa-lg fa-stop" style="color:' + stopTypesComp[key].Color + '" ></i></div><div class="row catText"><div class="col-xs-10">' + stopTypesComp[key].Name + '</div>';
@@ -255,11 +308,15 @@ function bindPolCal() {
   var startMonth = startOfWeek.format('MMM');
   var startMonthNum = (startOfWeek.month() + 1);
   var startDate = startOfWeek.date();
-  var startWeekDay = calView == "months" ? startOfWeek.startOf('isoWeek') : startOfWeek;
-  //var startWeekDay = startOfWeek;
+  var startWeekDay = startOfWeek;
+  var dayWord;
+  var haveCurrentDate = false;
   for (var i = 0; i < 7; i++) {
-    var isCurrentDate = moment().startOf('day').isSame(startWeekDay);
-    switch (startWeekDay.day()) {
+    var isCurrentDate;
+    if (moment().startOf('day').isSame(startWeekDay)) {
+      haveCurrentDate = isCurrentDate = true;
+    } else { isCurrentDate = false; }
+    switch (calView == "months" ? i : startWeekDay.day()) {
       case 0:
         dayWord = "Sun";
         break;
@@ -291,17 +348,20 @@ function bindPolCal() {
     } else if (calView == "months") {
       tHeadElem += "<th scope='col'>" + dayWord + "<br>&nbsp;</th>";
     }
-    startOfWeek.add(1, 'days');
+    calView != "months" ? startOfWeek.add(1, 'days') : '';
   }
   $('.t-head').append(tHeadElem);
 
-  startOfWeek.subtract(1, 'days');
-  var endMonth = startOfWeek.format('MMM');
-  var endDate = startOfWeek.date();
-  var endYear = startOfWeek.year();
-  var weekEndDate = startOfWeek.format('MM/DD/YYYY');
-  startOfWeek.subtract(6, 'days');
-  var weekStartDate = startOfWeek.format('MM/DD/YYYY');
+  var endMonth, endDate, endYear, weekEndDate, weekStartDate;
+  if (calView == "weeks") {
+    startOfWeek.subtract(1, 'days');
+    endMonth = startOfWeek.format('MMM');
+    endDate = startOfWeek.date();
+    endYear = startOfWeek.year();
+    weekEndDate = startOfWeek.format('MM/DD/YYYY');
+    startOfWeek.subtract(6, 'days');
+    weekStartDate = startOfWeek.format('MM/DD/YYYY');
+  }
 
   var headerTxt = calView == "weeks" ? '<b>' + startDate + ' ' + startMonth + ' ' + startYear + ' - ' + endDate + ' ' +
     endMonth + ' ' + endYear + '</b>' : "<b>" + startMonth + " " + startYear + "</b>";
@@ -316,6 +376,13 @@ function bindPolCal() {
   $(".pol tbody").removeAttr('class').addClass(tempClassCache);
   reSetMarkers();
   initPolApi(startMonthNum, startYear, weekStartDate, weekEndDate);
+  //if (haveCurrentDate) {
+  //  refreshCurrent = setInterval(function () {
+  //    initCurrentPolApi();
+  //  }, 60000);
+  //} else {
+  //  clearInterval(refreshCurrent);
+  //}
 }
 
 function initPolApi(month, year, weekStartDate, weekEndDate) {
@@ -339,8 +406,9 @@ function initPolApi(month, year, weekStartDate, weekEndDate) {
     "method": "GET",
     "data": queryParameters
   }
-
+  $('.viewControl .grid-loader-icon').show();
   $.ajax(settings).done(function (res) {
+    $('.viewControl .grid-loader-icon').hide();
     if (res) {
       latLongCollection = [];
       var responseKey = calView == 'months' ? "Days" : "Dates";
@@ -353,17 +421,58 @@ function initPolApi(month, year, weekStartDate, weekEndDate) {
   });
 }
 
+function initCurrentPolApi() {
+  var startDate = moment().format('MM/DD/YYYY');
+  var endDate = moment().add(1, 'days').format('MM/DD/YYYY');
+  var weekReqObj = {
+    'startDate': startDate,
+    'endDate': endDate,
+    'ClientIdFromRequest': clientId
+  };
+  var requestUrl = baseUrl + apiMethod['weeks'];
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": requestUrl,
+    "method": "GET",
+    "data": weekReqObj
+  }
+  $('.viewControl .grid-loader-icon').show();
+  $.ajax(settings).done(function (res) {
+    $('.viewControl .grid-loader-icon').hide();
+    if (res && tempResp != JSON.stringify(res)) {
+      var filtered = latLongCollection.filter(function (value, index, arr) {
+        return value.isCurrentDate == false;
+      });
+      latLongCollection = filtered;
+      var responseKey = calView == 'months' ? "Days" : "Dates";
+      for (var key in res[responseKey]) {
+        var dtTemp = res[responseKey][key];
+        mapDatatoCal(dtTemp, (moment().month() + 1), (moment().year()));
+      }
+      setMarkers(icons);
+      tempResp = JSON.stringify(res);
+    }
+  });
+}
+
 function mapDatatoCal(dtTemp, month, year) {
   var dtDay = dtTemp.Day;
   var dtDate = moment(dtTemp.date).format('MM-DD-YYYY');
+  var isCurrentDate = dtDate == moment().format('MM-DD-YYYY');
   var dtPOLCategory;
   var dtTotalCategoryTime;
   for (var innerKey in dtTemp.PolCategories) {
+    if (!dtTemp.PolCategories.hasOwnProperty(innerKey)) {
+      break;
+    }
     var dtInnerTemp = dtTemp.PolCategories[innerKey];
     dtPOLCategory = dtInnerTemp.Category;
-    var hrs = dtInnerTemp.CategoryTotalTime.split(':')[0] + 'h';
-    var min = dtInnerTemp.CategoryTotalTime.split(':')[1] + 'm';
-    dtTotalCategoryTime = hrs + ' ' + min;
+    var hrs, mins;
+    hrs = dtInnerTemp.CategoryTotalTime.split(':')[0] + 'h';
+    mins = dtInnerTemp.CategoryTotalTime.split(':')[1] + 'm';
+
+    dtTotalCategoryTime = hrs + ' ' + mins;
     var dtFilter = calView == 'months' ? dtDay : dtDate
     $("." + year + " ." + month + " ." + dtFilter + " ." + dtPOLCategory + "").text(dtTotalCategoryTime);
     for (var catKey in dtInnerTemp.ActivityRoutineDetails) {
@@ -376,9 +485,10 @@ function mapDatatoCal(dtTemp, month, year) {
           type: dtPOLCategory,
           address: dtCatTemp.Address,
           placeName: dtCatTemp.PlaceName,
-          startTime: moment(dtCatTemp.StartTime).format("DD MMM YYYY hh:mm a"),
-          endTime: moment(dtCatTemp.EndTime).format("DD MMM YYYY hh:mm a"),
-          colorCode: stopTypesComp[dtPOLCategory].Color
+          startTime: moment.utc(dtCatTemp.StartTime).format("DD MMM YYYY hh:mm a"),
+          endTime: moment.utc(dtCatTemp.EndTime).format("DD MMM YYYY hh:mm a"),
+          colorCode: stopTypesComp[dtPOLCategory].Color,
+          isCurrentDate: isCurrentDate
         });
       }
 
@@ -406,9 +516,35 @@ function reSetMarkers() {
 }
 
 function setMarkers(icons) {
-
-  var infoWindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
+  var infowindow = new google.maps.InfoWindow();
+  var groupedColl = latLongCollection.groupBy('address');
+  latLongCollection = [];
+
+  for (var key in groupedColl) {
+    if (!groupedColl.hasOwnProperty(key)) {
+      break;
+    }
+    var features = groupedColl[key];
+    var featureClass = (features.length > 1) ? "time-range" : ""
+    var multipleLatLong = '<div class="' + featureClass + '">';
+    features.forEach(function (feature, i) {
+      multipleLatLong += '<div style="margin-bottom:5px"><table><tr><td style="padding-bottom: 5px;"><b>Start Time:&nbsp;</b></td><td style="padding-bottom: 5px;">' + feature.startTime + '</td></tr><tr><td><b>End Time: </b></td><td>' + feature.endTime + '</td></tr></table></div><hr>';
+      if (i == (features.length - 1)) {
+        multipleLatLong += '</div>';
+        latLongCollection.push({
+          position: feature.position,
+          catName: feature.catName,
+          type: feature.type,
+          address: feature.address,
+          placeName: feature.placeName,
+          startTimeEndTime: multipleLatLong,
+          colorCode: feature.colorCode,
+          isCurrentDate: feature.isCurrentDate
+        });
+      }
+    });
+  };
 
   latLongCollection.forEach(function (feature) {
     var marker = new google.maps.Marker({
@@ -421,15 +557,27 @@ function setMarkers(icons) {
 
     google.maps.event.addListener(marker, 'mouseover', (function (mm, tt) {
       return function () {
-        var infoContent = '<div style="margin-bottom:5px;font-size:15px;color:' + feature.colorCode + '"><b>' + feature.catName.toUpperCase() + '</b></div><div style="margin-bottom:10px">' + ((feature.placeName != null) ? feature.placeName : feature.address) + '</div>' + '<div style="margin-bottom:5px"><table><tr><td style="padding-bottom: 5px;"><b>Start Time:&nbsp;</b></td><td style="padding-bottom: 5px;">' + feature.startTime + '</td></tr><tr><td><b>End Time: </b></td><td>' + feature.endTime + '</td></tr></table></div>';
-        infoWindow.setOptions({
+        var infoContent = '<div class="infowindow"><div style="margin-bottom:5px;font-size:15px;"><b>' + ((feature.placeName != null) ? feature.placeName : feature.address) + '</b></div><div style="margin-bottom:10px;font-size:12px;">( ' + feature.catName + ' )</div>' + feature.startTimeEndTime + '</div>';
+        //var infoContent = '<div class="infowindow"><div style="margin-bottom:5px;font-size:15px;color:' + feature.colorCode + '"><b>' + ((feature.placeName != null) ? feature.placeName : feature.address)feature.catName.toUpperCase() + '</b></div><div style="margin-bottom:10px">' + ((feature.placeName != null) ? feature.placeName : feature.address) + '</div>' + feature.startTimeEndTime + '</div>';
+        infowindow.setOptions({
           content: infoContent
         });
-        infoWindow.open(map, mm);
+        infowindow.open(map, mm);
       }
     })(marker, feature.address));
+
+    //google.maps.event.addListener(marker, 'mouseout', function () {
+    //  infowindow.close();
+    //});
   });
   map.fitBounds(bounds);
 }
 
-
+Array.prototype.groupBy = function (prop) {
+  return this.reduce(function (groups, item) {
+    const val = item[prop]
+    groups[val] = groups[val] || []
+    groups[val].push(item)
+    return groups
+  }, {})
+}

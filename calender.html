@@ -12,6 +12,16 @@
         crossorigin="anonymous"></script>
     <script src="./calnedar.js"></script>
     <style>
+      #googleMap div.infowindow {
+        max-height: 250px;
+        overflow-y: auto;
+      }
+  
+      #googleMap .time-range {
+        height: 100px;
+        overflow-y: scroll;
+      }
+  
       .patternOfLife .today {
         background-color: #d0eeef;
       }
@@ -56,10 +66,11 @@
   
       .patternOfLife .t-content .row {
         margin: 0px;
-      }  
+      }
+  
       .patternOfLife .t-content td {
         width: 100px;
-        font-size:12px;
+        font-size: 12px;
       }
   
       .patternOfLife .t-content th {
@@ -75,6 +86,7 @@
         min-width: 40px;
         max-width: 40px;
       }
+  
       .pattern-of-life thead th:first-child {
         text-align: left;
       }
@@ -132,7 +144,7 @@
         top: -14px;
         left: 0px;
         z-index: 99;
-        width: 36%;
+        width: 42%;
       }
   
         .patternOfLife .control-box {
@@ -230,136 +242,151 @@
         padding: 10px 1px;
         height: 53px;
       }
-      .patternOfLife .catText{
-        text-align:left;
+  
+      .patternOfLife .catText {
+        text-align: left;
       }
-      .activity-routine{
-        display:none;
+        .patternOfLife .catText > div {
+          padding-left: 1px;
+        }
+        .activity-routine {
+        display: none;
       }
+  
       .dar tr:nth-child(even) {
         background-color: #f2f2f2;
       }
+  
       .dar tr td:first-child {
-        width: 10px;
-        text-align: left;
-        padding: 5px 2px !important;
+        width: 5px;
+        text-align: left; 
       }
+        .dar tr td:first-child > div {
+          width: 30px;
+          padding: 22px 5px;
+        }
+  
       .dar tr td:not(:first-child) {
         width: 30px;
         text-align: left;
         padding: 5px 2px !important;
       }
   
+      .viewControl .grid-loader-icon {
+        display: none;
+      }
     </style>
 </head>
 
 <body>
   
-<div class="row">
-  <div id="wrapper">
-    <div id="googleMap"></div>
-    <div class="patternOfLife">
-      <div class="pol-calender">
-        <div class="animate-fixer">
-          <div class="row">
-            <div class="col-xs-12 control-box">
+  <div class="row">
+    <div id="wrapper">
+      <div id="googleMap"></div>
+      <div class="patternOfLife">
+        <div class="pol-calender">
+          <div class="animate-fixer">
+            <div class="row">
+              <div class="col-xs-12 control-box">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <select class="form-control data-viewer">
+                      <option value="pol">Pattern of Life Analysis</option>
+                      <option value="dar">Daily Activity Routine</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <select class="form-control" id="clientSelection"></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="pattern-of-life">
+              <div class="row">
+                <div class="col-xs-12 viewControl">
+                  <span class="grid-loader-icon" id="dashboard-grid-loading-icon"></span> &nbsp;
+                  <button class="btn btn-success btn-sm resetBtn" style="display:none;">Reset</button>
+                  <button class="btn btn-success btn-sm todayBtn">Today</button>
+                  <button id="week" class="btn btn-sm viewToggle">Week</button>
+                  <button id="month" class="btn btn-sm viewToggle">Month</button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-10">
+                  <div class="col-xs-2">
+                    <span class="direction-arrows direction" data-direction="left">
+                      <i class="fa fa-fw fa-lg fa-caret-left"></i>
+                    </span>
+                  </div>
+                  <div class="col-xs-8">
+                    <div class="monthDtl"></div>
+                  </div>
+                  <div class="col-xs-2">
+                    <span class="direction-arrows direction" data-direction="right">
+                      <i class="fa fa-fw fa-lg fa-caret-right"></i>
+                    </span>
+                  </div>
+                </div>
+  
+                <div class="col-xs-2 viewControl">
+                  @*<button class="btn btn-success btn-sm todayBtn">Today</button>*@
+                </div>
+              </div>
               <div class="row">
                 <div class="col-xs-12">
-                  <select class="form-control data-viewer">
-                    <option value="pol">Pattern of Life Analysis</option>
-                    <option value="dar">Daily Activity Routine</option>
-                  </select>
+                  <div class="table-responsive">
+                    <table class="table table-bordered pol">
+                      <thead>
+                        <tr class="t-head"></tr>
+                      </thead>
+                      <tbody class="t-content"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-routine">
+              <div class="row">
+                <div class="col-xs-10">
+                  <div class="col-xs-2">
+                    <span class="direction-arrows direction" data-direction="left">
+                      <i class="fa fa-fw fa-lg fa-caret-left"></i>
+                    </span>
+                  </div>
+                  <div class="col-xs-8">
+                    <div class="dateDtl"></div>
+                  </div>
+                  <div class="col-xs-2">
+                    <span class="direction-arrows direction" data-direction="right">
+                      <i class="fa fa-fw fa-lg fa-caret-right"></i>
+                    </span>
+                  </div>
+                </div>
+  
+                <div class="col-xs-2 viewControl">
+                  <button class="btn btn-success btn-sm todayBtn">Today</button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-12">
-                  <select class="form-control" id="clientSelection">                    
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pattern-of-life">
-            <div class="row">
-              <div class="col-xs-12 viewControl">
-                <button id="month" class="btn btn-sm viewToggle">Month</button>
-                <button id="week" class="btn btn-sm viewToggle">Week</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-10">
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="left">
-                    <i class="fa fa-fw fa-lg fa-caret-left"></i>
-                  </span>
-                </div>
-                <div class="col-xs-8">
-                  <div class="monthDtl"></div>
-                </div>
-                <div class="col-xs-2">
-                  <span  class="direction-arrows direction" data-direction="right">
-                    <i class="fa fa-fw fa-lg fa-caret-right"></i>
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-xs-2 viewControl">
-                <button class="btn btn-success btn-sm todayBtn">Today</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered pol">
-                    <thead>
-                      <tr class="t-head"></tr>
-                    </thead>
-                    <tbody class="t-content"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="activity-routine">
-            <div class="row">
-              <div class="col-xs-10">
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="left">
-                    <i class="fa fa-fw fa-lg fa-caret-left"></i>
-                  </span>
-                </div>
-                <div class="col-xs-8">
-                  <div class="dateDtl"></div>
-                </div>
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="right">
-                    <i class="fa fa-fw fa-lg fa-caret-right"></i>
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-xs-2 viewControl">
-                <button class="btn btn-success btn-sm todayBtn">Today</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered dar">                   
-                  </table>
+                  <div class="table-responsive">
+                    <table class="table table-bordered dar"></table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="control-toggler">
-        <button class="btn btn-lg btn-primary"><i class="fa fa-fw fa-lg fa-caret-left"></i></button>
+        <div class="control-toggler">
+          <button class="btn btn-lg btn-primary"><i class="fa fa-fw fa-lg fa-caret-left"></i></button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
 
               
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQnR5gQdv22ALIerWvA1heui4-WLupN8Q&callback=myMap"></script>
