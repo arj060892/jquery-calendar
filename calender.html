@@ -1,153 +1,173 @@
 <html>
-
-<head>
+  <head>
     <title>Calender</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
     <script src="./calnedar.js"></script>
-  <style>
-    html {
+    <style>
+      html {
         min-height: 100%;
         position: relative;
-    }
+      }
 
-    body {
+      body {
         height: 100%;
-    }
+      }
 
-    #googleMap div.infowindow {
+      #googleMap div.infowindow {
         max-height: 250px;
         overflow-y: auto;
         width: 250px;
-    }
+      }
 
-    #googleMap .time-range {
+      #googleMap .time-range {
         height: 60px;
         overflow-y: scroll;
-    }
+      }
 
-    .pattern-of-life .today {
+      .pattern-of-life .today {
         background-color: #d0eeef;
-    }
+      }
 
-    .patternOfLife .row {
+      .patternOfLife .row {
         margin: 10px;
-    }
+      }
 
-    .patternOfLife .monthDtl,
-    .patternOfLife .dateDtl {
+      .patternOfLife .monthDtl,
+      .patternOfLife .dateDtl {
         text-align: center;
-    }
+      }
 
-    .patternOfLife .viewControl {
+      .patternOfLife .viewControl {
         text-align: right;
-    }
+      }
 
-    .patternOfLife .viewControl button {
+      .patternOfLife .viewControl button {
         border: 1px solid;
         background-color: #f5f5f5;
         background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
-        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
+        background-image: -webkit-gradient(
+          linear,
+          0 0,
+          0 100%,
+          from(#fff),
+          to(#e6e6e6)
+        );
         background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
         background-image: -o-linear-gradient(top, #fff, #e6e6e6);
         background-image: linear-gradient(to bottom, #fff, #e6e6e6);
         background-repeat: repeat-x;
         border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-        border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
         color: #333;
-        text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
-    }
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+      }
 
-    .patternOfLife .viewControl button:hover {
+      .patternOfLife .viewControl button:hover {
         color: #333;
         text-decoration: none;
         background-position: 0 -15px;
-        -webkit-transition: background-position .1s linear;
-        -moz-transition: background-position .1s linear;
-        -o-transition: background-position .1s linear;
-        transition: background-position .1s linear;
-    }
+        -webkit-transition: background-position 0.1s linear;
+        -moz-transition: background-position 0.1s linear;
+        -o-transition: background-position 0.1s linear;
+        transition: background-position 0.1s linear;
+      }
 
-    .patternOfLife .t-content .row {
+      .patternOfLife .t-content .row {
         margin: 0px;
-    }
+      }
 
-    .patternOfLife .t-content td {
+      .patternOfLife .t-content td {
         width: 100px;
         font-size: 12px;
-    }
+      }
 
-    .patternOfLife .t-content th {
+      .patternOfLife .t-content th {
         width: 200px;
         table-layout: fixed;
-    }
+      }
 
-    .patternOfLife .catColorBox {
+      .patternOfLife .catColorBox {
         padding: 1px;
-    }
+      }
 
-    .pattern-of-life thead th:not(:first-child) {
+      .pattern-of-life thead th:not(:first-child) {
         min-width: 40px;
         max-width: 40px;
-    }
+      }
 
-    .pattern-of-life thead th:first-child {
+      .pattern-of-life thead th:first-child {
         text-align: left;
-    }
+      }
 
-    .patternOfLife .row {
+      .patternOfLife .row {
         margin: 10px 0px;
-    }
+      }
 
-    .patternOfLife .col-xs-12 {
+      .patternOfLife .col-xs-12 {
         padding: 0px 5px;
-    }
+      }
 
-    .pattern-of-life .table td,
-    .pattern-of-life .table th {
+      .pattern-of-life .table td,
+      .pattern-of-life .table th {
         text-align: center;
         padding: 5px 0px;
-    }
+      }
 
-    .patternOfLife table {
+      .patternOfLife table {
         margin: 0px;
-    }
+      }
 
-    .patternOfLife table,
-    .patternOfLife th,
-    .patternOfLife td,
-    .patternOfLife body,
-    .patternOfLife tbody {
+      .patternOfLife table,
+      .patternOfLife th,
+      .patternOfLife td,
+      .patternOfLife body,
+      .patternOfLife tbody {
         font-weight: lighter;
-    }
+      }
 
-    #googleMap {
+      #googleMap {
         position: absolute;
         top: 106px;
         bottom: 0;
         left: 0;
         right: 0;
         overflow: hidden;
-    }
+      }
 
-    .patternOfLife {
+      .patternOfLife {
         position: relative;
         top: -14px;
         left: 0px;
         z-index: 99;
         width: 672px;
-    }
+      }
 
-    .patternOfLife .control-box {
+      .patternOfLife .control-box {
         background-color: #1e1e1e;
-        background-image: -webkit-linear-gradient(top, #3a434e 0%, #1e1e1e 100%);
+        background-image: -webkit-linear-gradient(
+          top,
+          #3a434e 0%,
+          #1e1e1e 100%
+        );
         background-image: linear-gradient(to bottom, #3a434e 0%, #1e1e1e 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3a434e', endColorstr='#ff1e1e1e', GradientType=0);
         filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
@@ -158,260 +178,316 @@
         box-shadow: 0 0 14px rgba(0, 0, 0, 0.75);
         padding: 20px 15px;
         border-radius: 3px;
-    }
+      }
 
-    .patternOfLife .control-box .col-xs-6:first-child {
+      .patternOfLife .control-box .col-xs-6:first-child {
         padding-left: 5px;
-    }
+      }
 
-    .patternOfLife .control-box .col-xs-6:last-child {
+      .patternOfLife .control-box .col-xs-6:last-child {
         padding-right: 5px;
-    }
+      }
 
-    .panel-warning>.panel-heading {
+      .panel-warning > .panel-heading {
         color: #333;
         background-color: #fcf8e3;
         border-color: #faebcc;
-    }
+      }
 
-    .panel-heading {
+      .panel-heading {
         padding: 10px 15px;
         border-bottom: 1px solid transparent;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
-    }
+      }
 
-    .panel-default {
+      .panel-default {
         border-color: #ddd;
-    }
+      }
 
-    .panel {
+      .panel {
         background-color: #fff;
         border: 1px solid transparent;
         border-radius: 4px;
-        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    }
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      }
 
-    .panel-heading:hover {
+      .panel-heading:hover {
         cursor: pointer;
-    }
+      }
 
-    .patternOfLife .direction-arrows {
+      .patternOfLife .direction-arrows {
         color: #86d2ec;
         font-size: 20px;
         vertical-align: top;
-    }
+      }
 
-    .patternOfLife .direction-arrows:hover {
+      .patternOfLife .direction-arrows:hover {
         cursor: pointer;
-    }
+      }
 
-    .patternOfLife .pol-calender {
+      .patternOfLife .pol-calender {
         background-color: white;
         width: 89%;
         float: left;
         overflow: hidden;
         box-shadow: 5px 9px 20px #191919;
-    }
+      }
 
-    .patternOfLife .bolder {
+      .patternOfLife .bolder {
         font-weight: bold;
         font-size: 14px;
-    }
+      }
 
-    .patternOfLife .control-toggler {
+      .patternOfLife .control-toggler {
         width: 10%;
         float: left;
         top: 95px;
         margin-left: 1px;
         position: relative;
-    }
+      }
 
-    .patternOfLife .control-toggler button {
+      .patternOfLife .control-toggler button {
         padding: 10px 0px;
         width: 55%;
         height: 53px;
         border-radius: 0px;
         border-radius: 0px;
-    }
+      }
 
-    .patternOfLife .control-box>button {
+      .patternOfLife .control-box > button {
         padding: 10px 1px;
         height: 53px;
-    }
+      }
 
-    .patternOfLife .catText {
+      .patternOfLife .catText {
         text-align: left;
-    }
+      }
 
-    .patternOfLife .catText>div {
+      .patternOfLife .catText > div {
         padding-left: 1px;
-    }
+      }
 
-    .activity-routine {
+      .activity-routine {
         display: none;
-    }
+      }
 
-    .dar {
+      .dar {
         table-layout: fixed;
         width: 100%;
-    }
+      }
 
-    .dar .travelGroup{
+      .dar .travelGroup {
         background-color: #f2f2f2;
-    }
-.dar tr  td{
-  border: none !important;
+      }
+      /* .dar tr td:first-child {
+    width: 10%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
 }
-    .dar tr td:first-child {
-        width: 10%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-    }
 
-    .dar tr td:first-child>div {
-        padding-top: 5px;
-    }
+.dar tr td:first-child>div {
+    padding-top: 5px;
+}
 
-    .dar tr td:not(:first-child) {
+.dar tr td:not(:first-child) {
+    text-align: left;
+    padding: 5px 5px !important;
+    width: 10%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dar tr td:nth-child(2) {
+    width: 30%;
+}
+
+.dar tr td:nth-child(3) {
+    width: 40%;
+} */
+
+      .dar .row {
         text-align: left;
-        padding: 5px 5px !important;
-        width: 10%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        padding: 9px 2px;
+      }
 
-    .dar tr td:nth-child(2) {
-        width: 30%;
-    }
-
-    .dar tr td:nth-child(3) {
-        width: 40%;
-    }
-
-    .viewControl .grid-loader-icon {
+      .dar .row img {
+        cursor: pointer;
+      }
+      .viewControl .grid-loader-icon {
         display: none;
-    }
+      }
 
-    .infowindow hr{
-      margin-top: 8px;
-    margin-bottom: 8px;
-    }
-    .dar tr td img{
-      cursor: pointer;
-    }
+      .infowindow hr {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .dar tr td img {
+        cursor: pointer;
+      }
 
-    .rowHighlight {
-    background-color: #F5F11D;
-  }
-</style>
-</head>
+      .rowHighlight {
+        background-color: #f5f11d;
+      }
+      .dar .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
-<body>
-  
-<div class="row">
-  <div id="wrapper">
-    <div id="googleMap"></div>
-    <div class="patternOfLife">
-      <div class="pol-calender">
-        <div class="animate-fixer">
-          <div class="row">
-            <div class="col-xs-12 control-box">
+      .dar .dropdown-content {
+        position: absolute;
+        top: 77%;
+        right: -16px;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: 0.5rem 0;
+        margin: 0.125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.25rem;
+      }
+
+      .dar .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 0.25rem 1.5rem;
+        clear: both;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        text-transform: uppercase;
+        font-weight: lighter;
+        font-size: 11px;
+      }
+      .dar .dropdown-item:hover {
+        background-color: #0000001f;
+        text-decoration: none;
+      }
+
+      .dar .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dar .dropdown > span:after {
+        content: "\2807";
+        font-size: 1.5em;
+        color: #005b7b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row">
+      <div id="wrapper">
+        <div id="googleMap"></div>
+        <div class="patternOfLife">
+          <div class="pol-calender">
+            <div class="animate-fixer">
               <div class="row">
-                <div class="col-xs-12">
-                  <select class="form-control data-viewer">
-                    <option value="pol">Pattern of Life Analysis</option>
-                    <option value="dar">Daily Activity Routine</option>
-                  </select>
+                <div class="col-xs-12 control-box">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <select class="form-control data-viewer">
+                        <option value="pol">Pattern of Life Analysis</option>
+                        <option value="dar">Daily Activity Routine</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <select class="form-control" id="clientSelection"></select>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <select class="form-control" id="clientSelection"></select>
+    
+              <div class="pattern-of-life">
+                <div class="row">
+                  <div class="col-xs-7" style="padding-top:8px;">
+                    <div class="col-xs-2">
+                      <span class="direction-arrows direction" data-direction="left">
+                        <i class="fa fa-fw fa-lg fa-caret-left"></i>
+                      </span>
+                    </div>
+                    <div class="col-xs-8">
+                      <div class="monthDtl"></div>
+                    </div>
+                    <div class="col-xs-2">
+                      <span class="direction-arrows direction" data-direction="right">
+                        <i class="fa fa-fw fa-lg fa-caret-right"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 viewControl">
+                    <span class="grid-loader-icon" id="dashboard-grid-loading-icon"></span> &nbsp;
+                    <button class="btn btn-success btn-sm todayBtn">Today</button>
+                    <button id="week" class="btn btn-sm viewToggle">Week</button>
+                    <button id="month" class="btn btn-sm viewToggle">Month</button>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered pol">
+                        <thead>
+                          <tr class="t-head"></tr>
+                        </thead>
+                        <tbody class="t-content"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="activity-routine">
+                <div class="row">
+                  <div class="col-xs-10">
+                    <div class="col-xs-2">
+                      <span class="direction-arrows direction" data-direction="left">
+                        <i class="fa fa-fw fa-lg fa-caret-left"></i>
+                      </span>
+                    </div>
+                    <div class="col-xs-8">
+                      <div class="dateDtl"></div>
+                    </div>
+                    <div class="col-xs-2">
+                      <span class="direction-arrows direction" data-direction="right">
+                        <i class="fa fa-fw fa-lg fa-caret-right"></i>
+                      </span>
+                    </div>
+                  </div>
+    
+                  <div class="col-xs-2 viewControl">
+                    <button class="btn btn-success btn-sm todayBtn">Today</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="table-responsive">
+                      <table class="table table-bordered dar"></table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="pattern-of-life">
-            <div class="row">
-              <div class="col-xs-7" style="padding-top:8px;">
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="left">
-                    <i class="fa fa-fw fa-lg fa-caret-left"></i>
-                  </span>
-                </div>
-                <div class="col-xs-8">
-                  <div class="monthDtl"></div>
-                </div>
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="right">
-                    <i class="fa fa-fw fa-lg fa-caret-right"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="col-xs-5 viewControl">
-                <span class="grid-loader-icon" id="dashboard-grid-loading-icon"></span> &nbsp;
-                <button class="btn btn-success btn-sm todayBtn">Today</button>
-                <button id="week" class="btn btn-sm viewToggle">Week</button>
-                <button id="month" class="btn btn-sm viewToggle">Month</button>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered pol">
-                    <thead>
-                      <tr class="t-head"></tr>
-                    </thead>
-                    <tbody class="t-content"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="activity-routine">
-            <div class="row">
-              <div class="col-xs-10">
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="left">
-                    <i class="fa fa-fw fa-lg fa-caret-left"></i>
-                  </span>
-                </div>
-                <div class="col-xs-8">
-                  <div class="dateDtl"></div>
-                </div>
-                <div class="col-xs-2">
-                  <span class="direction-arrows direction" data-direction="right">
-                    <i class="fa fa-fw fa-lg fa-caret-right"></i>
-                  </span>
-                </div>
-              </div>
-
-              <div class="col-xs-2 viewControl">
-                <button class="btn btn-success btn-sm todayBtn">Today</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered dar"></table>
-                </div>
-              </div>
-            </div>
+          <div class="control-toggler">
+            <button class="btn btn-lg btn-primary"><i class="fa fa-fw fa-lg fa-caret-left"></i></button>
           </div>
         </div>
       </div>
-      <div class="control-toggler">
-        <button class="btn btn-lg btn-primary"><i class="fa fa-fw fa-lg fa-caret-left"></i></button>
-      </div>
     </div>
-  </div>
-</div>     
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQnR5gQdv22ALIerWvA1heui4-WLupN8Q&callback=myMap"></script>
-</body>
-
+  </body>
 </html>
